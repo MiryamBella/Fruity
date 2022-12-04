@@ -8,27 +8,27 @@ import codecs
 #from bidi import algorithm as bidialg
 
 #to get the table of ftuits as div object.
-def getDataDiv(divs, classContectText):
-    for index in range(len(divs)):
-        div = divs.eq(index)
-        if div.has_class(classContectText):
-            return div
+def getDataDiv(father, classContectText):
+    for index in range(len(father)):
+        kid = father.eq(index)
+        if kid.has_class(classContectText):
+            return kid
 
-def getData(divBase):
+def getData(divBase, linkWeb):
     friutList = divBase.find("a")
     list = []
     for index in range(len(friutList)):
         fruitBox = friutList.eq(index)
-        fruit = getDataFromA(fruitBox)
+        fruit = getDataFromA(fruitBox, linkWeb)
         fruit['index'] = index
         list.append(fruit)
     return list
 
 #convert tha data from a to dicshenery.
-def getDataFromA(a):
+def getDataFromA(a, linkWeb):
     name = a.text()
     link = a.attr('href')
-    result = {"name": name, "link": "https://www.kosharot.co.il/" + link}
+    result = {"name": name, "link": linkWeb + link}
     return result
 
 
