@@ -12,11 +12,11 @@ response = requests.get('https://www.kosharot.co.il/index2.php?id=7&lang=HEB')
 html = pq(response.text)
 #get the data of the fruits.
 divs = html.find("div")
-div = webData.getDataDiv(divs, "page3_table_contant")
+div = webData.getClassObject(divs, "page3_table_contant")
 
-fruits = webData.getData(div, "https://www.kosharot.co.il/")
+fruits = webData.getDataAsList(div, "https://www.kosharot.co.il/")
 
-#print(webData.enrichData(fruits[22]))
+print(webData.enrichData(fruits[22]), "page7_table_data")
 
 #getText()
 

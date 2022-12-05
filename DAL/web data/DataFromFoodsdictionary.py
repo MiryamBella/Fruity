@@ -13,11 +13,12 @@ html = pq(response.text)
 #get the data of the fruits.
 table = html.find("table")
 
-myTable = webData.getDataDiv(table, "textTable")
+myTable = webData.getClassObject(table, "textTable")
 ul= myTable.find("tbody").find("tr").find("td").find("ul")
 
-fruits = webData.getData(ul, '')
-print(fruits)
+links = webData.getDataAsList(ul, '')
+print(links)
+print(webData.enrichData(links[0], "col-12"))
 #print(webData.enrichData(fruits[22]))
 
 #getText()
