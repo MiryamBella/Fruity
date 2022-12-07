@@ -29,3 +29,4 @@ webData.saveDataAsJson("fruitsList.json", fruits)
 
 webData.getDataFromJyson("fruitsList.json")
 '''
+a=12
