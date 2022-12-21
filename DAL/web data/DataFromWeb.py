@@ -1,3 +1,5 @@
+import os.path
+
 import requests
 from pyquery import PyQuery as pq
 import json
@@ -51,7 +53,7 @@ def saveDataAsJson(nameFile, data):
     stream.close()
 
 def saveDataAstext(nameFile, data):
-    stream = codecs.open(nameFile, 'w', encoding = "utf-8-sig")
+    stream = codecs.open(nameFile, 'w+', encoding = "utf-8-sig")
     for objy in data:
         stream.write(str(objy))
     #json.dump(json_object, stream)
@@ -68,12 +70,13 @@ def getTextFromItemLink(linksList):
             return
 
 def getDataFromJyson(nameFile):
-    stream = codecs.open(nameFile, 'r', encoding="utf-8-sig")
+    if(os.path.exists(nameFile)==False):
+        return None
+    stream = codecs.open(nameFile, 'r+', encoding="utf-8-sig")
     # Serializing json
     json_object = json.load(stream)
-    print(json_object)
-    # json.dump(json_object, stream)
     stream.close()
+    return json_object
 
 
 
