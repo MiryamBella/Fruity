@@ -71,12 +71,15 @@ dir_train_pinenapple = 'dataset/all_data/test/pinenapple'
 dir_train_strawberries = 'dataset/all_data/test/stawberries'
 dir_train_watermelon = 'dataset/all_data/test/watermelon'
 
+test=makeDataset([dir_train_banana], ["banana/"])
 
-
-test=makeDataset([dir_train_banana, dir_train_kiwi, dir_train_Apple, dir_train_avocado, dir_train_cherry, dir_train_mango, dir_train_orange, dir_train_pinenapple, dir_train_strawberries, dir_train_watermelon],
-                  ["banana/", "kiwi/", "apple/", "avocado/", "cherry/", "mango/", "orange/", "pinenapple/", "stawberries/","watermelon/"])
+'''
+test=makeDataset([dir_train_banana, dir_train_kiwi, dir_train_Apple, dir_train_avocado, dir_train_cherry, dir_train_mango,
+                  dir_train_orange, dir_train_pinenapple, dir_train_strawberries, dir_train_watermelon],
+                  ["banana/", "kiwi/", "apple/", "avocado/", "cherry/", "mango/", "orange/", "pinenapple/", "stawberries/",
+                   "watermelon/"])
 print(test)
-
+'''
 # We have grayscale images, so while loading the images we will keep grayscale=True, if you have RGB images, you should set grayscale as False
 train_image = []
 for i in tqdm(range(train.shape[0])):
@@ -127,22 +130,27 @@ for i in tqdm(range(test.shape[0])):
     test_image.append(img)
 test = np.array(test_image)
 
+
 # making predictions
 predict_x=model.predict(test)
 prediction=np.argmax(predict_x,axis=1)
-print(prediction)
-print(type(prediction))
-test["predidict"]= prediction
-good=0
-bad=0
-for i in tqdm(range(test.shape[0])):
-    if(test["id"][i]==test["predidict"][i]):
-        good+=1
-    else:bad+=1
-print("good")
-print(good)
-print("bad")
-print(bad)
+
+# creating submission file
+sample = pd.read_csv('test.csv')
+sample['label'] = prediction
+sample.to_csv('sample_cnn.csv', header=True, index=False)
+#סוג של קובץ שיש בו את השמות של התמונות והם ממופות סתם לאפס, ואז לאחר הריצה זה ישתנה לתוצאות האמיתיות
+
+
+count=0
+countAll=0
+for i in range(len(sample["label"])):
+  countAll+=1
+  if(sample["label"][i]==0):
+    count+= 1
+
+print(count)
+print(countAll)
 
 
 

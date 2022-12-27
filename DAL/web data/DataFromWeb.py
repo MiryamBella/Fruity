@@ -16,6 +16,16 @@ def getClassObject(father, classContectText):
         if kid.has_class(classContectText):
             return kid
 
+#to get the object block with some class.
+def getManyClassesObject(father, classContectText):
+    kids=[]
+    for index in range(len(father)):
+        kid = father.eq(index)
+        if kid.has_class(classContectText):
+            kids.append(kid)
+    return kids
+
+
 def getDataAsList(group, linkWeb):
     itemList = group.find("a")
     list = []

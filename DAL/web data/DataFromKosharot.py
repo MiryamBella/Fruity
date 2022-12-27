@@ -6,10 +6,10 @@ import codecs
 import DataFromWeb as webData
 
 class cosharot:
-    def __init__(self, namFile):
-        self.fruits=webData.getDataFromJyson(namFile)
+    def __init__(self, nameFile):
+        self.fruits=webData.getDataFromJyson(nameFile)
         if(self.fruits==None):
-            self.fruits = self.makeData(namFile)
+            self.fruits = self.makeData(nameFile)
 
     def get_f(self):
         return self.fruits
@@ -76,7 +76,7 @@ class cosharot:
         return finalStr
 
 
-cosharotData= cosharot("fruitsList.json")
+cosharotData= cosharot("jsonFiles/fruitsList.json")
 
 
 #print(cosharotData)
