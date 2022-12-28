@@ -6,7 +6,13 @@ import json
 import codecs
 #from bidi import algorithm as bidialg
 
-
+def getDivs(link):
+    # get html from website.
+    response = requests.get(link)
+    html = pq(response.text)
+    # get the data of the recipe.
+    divs = html.find("div")
+    return divs
 
 
 #to get the object block with some class.
