@@ -1,9 +1,3 @@
-import requests
-from pyquery import PyQuery as pq
-import json
-import codecs
-
-
 import DataFromWeb as webData
 
 
@@ -77,11 +71,24 @@ class FoodsdictionaryRecipe:
         return None
 
 
-foodRecipes =FoodsdictionaryRecipe("jsonFiles/fruitAcademy_recipe")
-
-r= foodRecipes.getRecipe_byIndex(1)
-print(foodRecipes.getRecipe_byNameComponet("תמר"))
-
+foodRecipes =FoodsdictionaryRecipe("jsonFiles/fruitAcademy_recipe.json")
+data=foodRecipes.getRecipes()
+'''
+for d in data:
+    if("ברוק" in d["name"]):
+        print(d)
+'''
+r= foodRecipes.getRecipe_byNameComponet("תמר")
+print(data)
+#print(r["info"])
+#print(foodRecipes.getRecipe_byNameComponet("תמר"))
+'''
+for i in r["recipe"]["components"]:
+    if("תמר" in i):
+        print(i)
+        print()
+'''
+#print("order", r["recipe"]["order"])
 
 
 

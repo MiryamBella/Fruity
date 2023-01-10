@@ -1,7 +1,5 @@
 import requests
 from pyquery import PyQuery as pq
-import json
-import codecs
 
 import DataFromWeb as webData
 
@@ -78,11 +76,10 @@ class cosharot:
 
 cosharotData= cosharot("jsonFiles/fruitsList.json")
 
-
 #print(cosharotData)
 #print(cosharotData.getString_orderFruit_byIndex(0))
 #print(cosharotData.get_f()[0])
-#print(cosharotData.getFruite("תפוח", cosharotData.get_f()))
+print(cosharotData.getFruite("תמר", cosharotData.get_f()))
 
 
 

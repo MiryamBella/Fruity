@@ -1,9 +1,5 @@
 import requests
 from pyquery import PyQuery as pq
-import json
-import codecs
-
-
 import DataFromWeb as webData
 
 
@@ -18,7 +14,7 @@ def getData(link, className):
     a= webData.getClassObject(kid,"col - 12")
 
     return a
-class Foodsdictionary:
+class Foodsdictionary_data:
     def __init__(self, nameFile):
         self.linksInfo = webData.getDataFromJyson(nameFile)
         if (self.linksInfo == None):
@@ -39,10 +35,25 @@ class Foodsdictionary:
 
         myTable = webData.getClassObject(table, "textTable")
         ul = myTable.find("tbody").find("tr").find("td").find("ul")
-
         links = webData.getDataAsList(ul, '')
+
+        for i in range(len(links)):
+            response = requests.get(links[i]["link"])
+            html = pq(response.text)
+            table = html.find("div").find("table")
+            myTable = webData.getClassObject(table, "nv-table")
+            links[i]["Details"] = (myTable.text()).replace(
+                "\nלמה לבדוק ערך תזונתי של מוצר אחד?5 ימי ניסיון חינם במחשבון הקלוריות", '')
+
+            divs = html.find("div")
+            clasCenter = webData.getManyClassesObject(divs, "text-center")[2]
+
+            col12 = webData.getManyClassesObject(clasCenter.find("div"), "col-12")
+            links[i]["info"] = col12[0].find("p").text()[:-22]
+
         webData.saveDataAsJson(nameFile, links)
         return links
+
 
 
 '''
@@ -56,13 +67,13 @@ myTable = webData.getClassObject(table, "nv-table")
 print(table)
 '''
 
-dataFood= Foodsdictionary("jsonFiles/foodsdictionary_info.json")
+dataFood= Foodsdictionary_data("jsonFiles/foodsdictionary_info.json")
 
 print(dataFood)
 #print(getData(links[0]['link'], "col-12"))
 #print(webData.enrichData(fruits[22]))
 
-#getText()
+#getText()ְ
 '''
 webData.saveDataAsJson("fruitsList.json", fruits)
 #webData.saveDataAstext("fruitsList.txt", fruits)
