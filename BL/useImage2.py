@@ -7,14 +7,14 @@ import matplotlib.image as mpimg
 
 from sklearn.model_selection import train_test_split
 
-dir_train_fruit='dataset/fruits/train/'
+dir_train_fruit= '../DAL/dataset/fruits/train/'
 
-dir_train_apple = 'dataset/apple/train'
-dir_test_apple = 'dataset/apple/test'
-dir_train_banana = 'dataset/fruits/train/banana'
-dir_train_kiwi = 'dataset/fruits/train/kiwi'
-dir_test_banana  = 'dataset/fruits/test/banana'
-dir_test_kiwi  = 'dataset/fruits/test/kiwi'
+dir_train_apple = '../DAL/dataset/apple/train'
+dir_test_apple = '../DAL/dataset/apple/test'
+dir_train_banana = '../DAL/dataset/fruits/train/banana'
+dir_train_kiwi = '../DAL/dataset/fruits/train/kiwi'
+dir_test_banana  = '../DAL/dataset/fruits/test/banana'
+dir_test_kiwi  = '../DAL/dataset/fruits/test/kiwi'
 
 
 # explore the dataset - how many images in the training set?
