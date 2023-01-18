@@ -46,13 +46,35 @@ else:
     print("No image detected. Please! try again")
 
 '''
-
-
+import BL.IdentifyModel as idClass
 import cv2
-def takepoto():
-    camera = cv2.VideoCapture(0)
-    eturn_value, image = camera.read()
-    cv2.imwrite('opencv.png', image)
-    del(camera)
+
+
+class Menu:
+    def __init__(self):
+        self.runNum=0
+        self.myIdenify = idClass.Identify()
+        print("welcom")
+
+    def takepoto(self):
+        camera = cv2.VideoCapture(0)
+        eturn_value, image = camera.read()
+        name= str(self.runNum)+'.png'
+        self.runNum+=1
+        cv2.imwrite("../DAL/dataset/clientsImage/"+ name, image)
+        del (camera)
+        return name
+
+    def idetifyImage(self, nameImage):
+        nameObject= self.myIdenify.identifyObject(nameImage)
+        nameObject = self.myIdenify.translateNameFruit2hebrew(nameImage)
+        return nameImage
+
+
+
+
+
+
+
 
 

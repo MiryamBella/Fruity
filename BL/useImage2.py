@@ -1,138 +1,59 @@
-# Import dependencies
 import os
-import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
-import matplotlib.image as mpimg
-
-from sklearn.model_selection import train_test_split
-
-dir_train_fruit= '../DAL/dataset/fruits/train/'
-
-dir_train_apple = '../DAL/dataset/apple/train'
-dir_test_apple = '../DAL/dataset/apple/test'
-dir_train_banana = '../DAL/dataset/fruits/train/banana'
-dir_train_kiwi = '../DAL/dataset/fruits/train/kiwi'
-dir_test_banana  = '../DAL/dataset/fruits/test/banana'
-dir_test_kiwi  = '../DAL/dataset/fruits/test/kiwi'
+import numpy as np
+from tensorflow.keras.utils import load_img,img_to_array
+from tensorflow.keras.models import load_model
 
 
-# explore the dataset - how many images in the training set?
-path, dirs, files = next(os.walk(dir_train_banana))
-file_count_train = len(files)
-print("count train images banana:")
-print(file_count_train)
-# explore the dataset - how many images in the training set?
-path, dirs, files = next(os.walk(dir_train_kiwi))
-file_count_train += len(files)
-print("count train images kiwi:")
-print(file_count_train)
+categorys={0: "apple",
+           2: "avocado",
+           1: "banana",
+           3: "cherry",
+           4: "kiwi",
+           5:"mango",
+           6: "orange",
+           7: "pinenapple",
+           8: "strawberries",
+           9: "watermelon"
+          }
+resultPrint=""
+for Pmodel in os.listdir("model/"):
+    model = load_model("model/"+Pmodel)
+    basic_path= "../DAL/dataset/clientsImage/"
+    img_width, img_height = 150, 150
+    a=0
+    countCorect=0
+    channels =3
+    l=[]
+    for category in ["apple/","avocado/", "banana/","cherry/", "kiwi/","mango/", "orange/","pinenapple/", "strawberries/","watermelon/"]:
+        path = basic_path + category#"gdrive/MyDrive/data_sets/cats_dogs/PetImages/test/"+category
+        miniA = 0
+        miniC = 0
+        for i in os.listdir(path):
+          img = load_img(path+i, grayscale=False,target_size=(img_width, img_height)) # grayscale-black or white
+          img = img_to_array(img)
+          img = img.reshape(1, img_width, img_height, channels).astype('float32')
+          img = img / 255.0 # Normalization
+
+          preds = model.predict(img)
+          #print(i)
+          #print("the result: ", categorys[np.argmax(preds)])
+          #print("predictions:{} category:{}".format(preds,np.argmax(preds))) # argmax - returns indices of the max element of the array in a particular axis.
+          a += 1
+          miniA+=1
+          if(categorys[np.argmax(preds)] in category):
+            countCorect+=1
+            miniC+=1
+        l.append(category +': '+ str(miniA)+", "+ str(miniC) + ", "+ str(round(miniC/miniA, 3)) )
+    resultPrint+="model name: "+ Pmodel+'\n'
+    for h in l:
+        resultPrint+=str(h) +"\n"
+    resultPrint+= a +' ' +countCorect+"\n"
+    resultPrint+= str(round(countCorect/a, 3))+'\n'
+    resultPrint+= "------------------------------------------------------"+ '\n'
+
+print(resultPrint)
 
 
-'''
-# and how many in the test set?
-path, dirs, files = next(os.walk(dir_test_banana))
-file_count_test = len(files)
-print("count test images:")
-print(file_count_test)
-# and how many in the test set?
-path, dirs, files = next(os.walk(dir_test_kiwi))
-file_count_test = len(files)
-print("count test images:")
-print(file_count_test)
-
-'''
-
-
-#                                          make a dataset out of the images in the training dir
-def makeDataset(indexFruite, dir_images, fruitFolder=None):
-    filenames = os.listdir(dir_images)
-    filenames_kiwi = os.listdir(dir_train_kiwi)
-    categories = []
-    for filename in filenames:
-        categories.append(indexFruite)
-    if(fruitFolder!=None):
-        for i in range(len(filenames)):
-            filenames[i] = fruitFolder + filenames[i]
-    df = pd.DataFrame({
-        'filename': filenames,
-        'category': categories
-    })
-    return df
-df= makeDataset(1, dir_train_banana, 'banana/')
-df.apply()
-# how many dogs and cats?
-print('number of banana: %d' % len(df[df.category == 1]))
-print('number of kiwi: %d' % len(df[df.category == 0]))
-
-
-# visualize the images
-
-
-
-# Create figure with a specified number of subplots
-def plot_images(images, labels, sp=3):
-    fig, axes = plt.subplots(sp, sp)
-    fig.subplots_adjust(hspace=1, wspace=0.3)
-
-    for i, ax in enumerate(axes.flat):
-        # Plot image
-        ax.imshow(mpimg.imread(images[i]))
-
-        # Plot label
-        ax.set_xlabel('Label : %s' % labels[i])
-
-    plt.show()
-
-
-
-
-kiwi_train_valid=df[df.category == 0]
-'''
-to split one dataset
-#                                         separate the kiwi from the banana in the dataframe
-filtered_kiwi = df[df.category == 0]
-filtered_banana = df[df.category == 1]
-
-
-#                                    split to train, validate and test folders with the help of sklearn
-# each split is to 2 groups
-# so we need 2 splits in order to split to 3 groups
-
-
-# the first split is to cats_test and the rest of the images
-kiwi_train_valid, kiwi_test = train_test_split(filtered_kiwi, test_size=0.1, random_state=1)
-
-# the second split on the cats_train_valid folder separates to 2 folders: train and valid
-kiwi_train, kiwi_valid = train_test_split(kiwi_train_valid, test_size=0.2, random_state=1)
-
-# how many cats in the train and valid?
-print(kiwi_train.shape[0])
-print(kiwi_valid.shape[0])
-
-# split the dogs dataset to the same ratio
-banana_train_valid, banana_test = train_test_split(filtered_banana, test_size=0.1, random_state=1)
-
-banana_train, banana_valid = train_test_split(banana_train_valid, test_size=0.2, random_state=1)
-'''
-
-# importing tensorflow and Keras for doing ML
-from tensorflow.python.keras.models import Model, Sequential
-from tensorflow.python.keras.layers import Dense, Flatten, Dropout
-from tensorflow.python.keras.applications import VGG16
-from tensorflow.python.keras.applications.vgg16 import preprocess_input, decode_predictions
-from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.python.keras.optimizers import Adam, RMSprop
-
-
-
-
-
-
-
-
-
-#dog= banana=1
-#cat= kiwi=0
 
 

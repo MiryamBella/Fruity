@@ -13,11 +13,11 @@ categorys={0: "apple",
            5:"mango",
            6: "orange",
            7: "pinenapple",
-           8: "stawberries",
+           8: "strawberries",
            9: "watermelon"
           }
-model = load_model("fruitsModel_v1_2.h5")
-basic_path= "../DAL/dataset/all_data/train/"
+model = load_model("model/fruitsModel_lavel2_drope2_multdataset_epo20.h5")
+basic_path= "../DAL/dataset/all_data/test/"
 
 img_width, img_height = 150, 150
 a=0
