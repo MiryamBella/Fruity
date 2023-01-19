@@ -6,23 +6,23 @@ from tensorflow.keras.models import load_model
 
 
 class Identify:
-    def __init__(self):
-        self.pathModel="model/fruitsModel_lavel2_drope2_multdataset_epo20.h5"
-        self.basicPath_train = "../DAL/dataset/all_data/train/"
-        self.basicPath_test = "../DAL/dataset/all_data/test/"
-        self.clientsImagePath= "../DAL/dataset/clientsImage/"
-        self.model= load_model(self.pathModel)
-        self.categorys={0: "apple",
-           2: "avocado",
-           1: "banana",
-           3: "cherry",
-           4: "kiwi",
-           5:"mango",
-           6: "orange",
-           7: "pinenapple",
-           8: "strawberries",
-           9: "watermelon"
-          }
+    def __init__(self, instance_path=""):
+        self.pathModel = os.path.join(instance_path, "BL/model/fruitsModel.h5")
+        self.basicPath_train = os.path.join(instance_path, "DAL/dataset/all_data/train/")
+        self.basicPath_test = os.path.join(instance_path, "DAL/dataset/all_data/test/")
+        self.clientsImagePath = os.path.join(instance_path, "DAL/dataset/clientsImage/")
+        self.model = load_model(self.pathModel)
+        self.categorys = {0: "apple",
+                          2: "avocado",
+                          1: "banana",
+                          3: "cherry",
+                          4: "kiwi",
+                          5: "mango",
+                          6: "orange",
+                          7: "pinenapple",
+                          8: "strawberries",
+                          9: "watermelon"
+                          }
 
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Identify:
         channels = 3
         # grayscale-black or white
         img = load_img(self.clientsImagePath + name_image, grayscale=False, target_size=(img_width, img_height))
-        mg = img_to_array(img)
+        img = img_to_array(img)
         img = img.reshape(1, img_width, img_height, channels).astype('float32')
         img = img / 255.0  # Normalization
 
