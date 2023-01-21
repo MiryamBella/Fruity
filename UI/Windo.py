@@ -2,6 +2,12 @@ from bs4 import BeautifulSoup
 import BL.IdentifyModel as idClass
 import os
 from pyquery import PyQuery as pq
+import DAL.web_data.DataFromKosharot as kosarot
+import DAL.web_data.DataFromFoodsdictionary as dataofFruits
+import DAL.web_data.DataFromFruitAcademy as recapis
+from bs4 import BeautifulSoup as bs
+import os
+import re
 #import cv2
 
 '''
@@ -20,53 +26,43 @@ class Menu:
     def __init__(self, instance_path=""):
         self.runNum=0
         self.myIdenify = idClass.Identify()
-        with open(os.path.join(instance_path,"UI/form.html"), "r", encoding='utf-8') as f:
-            text = f.read()
-        self.htmlPage ={"main": text}
+        '''with open(os.path.join(instance_path,"UI/form.html"), "r", encoding='utf-8') as f:
+            text = f.read()'''
+        #self.htmlPage ={"main": text}
+        self.kosharot= kosarot.cosharot(os.path.join(instance_path,"DAL/web_data/jsonFiles/fruitsList.json"))
+        self.dataofFruits = dataofFruits.Foodsdictionary_data(os.path.join(instance_path,"DAL/web_data/jsonFiles/foodsdictionary_info.json"))
+        self.recepies =recapis.FoodsdictionaryRecipe(os.path.join(instance_path,"DAL/web_data/jsonFiles/fruitAcademy_recipe.json"))
 
 
 
-
-    def idetifyImage(self, nameImage):
+    def idetifyImage(self, nameImage, instance_path=""):
         nameObject= self.myIdenify.identifyObject(nameImage)
-        nameObject = self.myIdenify.translateNameFruit2hebrew(nameImage)
-        return nameImage
+        #nameObject = self.myIdenify.translateNameFruit2hebrew(nameObject)
 
-    def mainPageAsStr(self):
-        return self.htmlPage["main"]
-
-    def resultIdetify(self, nameObject, instance_path=""):
-        with open(os.path.join(instance_path,"UI/page2.html"), "r", encoding='utf-8') as f:
-            text = f.read()
-
-        from bs4 import BeautifulSoup as bs
-        import os
-        import re
-
-        # Remove the last segment of the path
-        base = os.path.dirname(os.path.abspath(__file__))
-
+        '''
         # Open the HTML in which you want to make changes
-        html = open(os.path.join(base, 'UI/page2.html'))
-
+        html = open(os.path.join(instance_path, 'UI/page2.html'))
         # Parse HTML file in Beautiful Soup
         soup = bs(html, 'html.parser')
-
-        # Give location where text is
-        # stored which you wish to alter
-        old_text = soup.find("p", {"id": "para"})
-
-        # Replace the already stored text with
-        # the new text which you wish to assign
-        new_text = old_text.find(text=re.compile(
-            'Geeks For Geeks')).replace_with('Vinayak Rai')
-
+        # Give location where text is stored which you wish to alter
+        old_text = soup.find("p", {"id": "nameFruit"})
+        # Replace the already stored text with the new text which you wish to assign
+        new_text = old_text.find(text=re.compile('')).replace_with(nameObject)
         # Alter HTML file to see the changes done
         with open("gfg.html", "wb") as f_output:
             f_output.write(soup.prettify("utf-8"))
+        self.htmlPage["idtify": new_text]
+        '''
+        return nameObject
+
+    def getRecipients(self, name):
+        return self.recepies.getRecipe_byNameComponet(name)
 
 
 
-
-
+    def translateNameFruit2hebrew(self, eName):
+        dicthenery= {"apple": "תפוח", "avocado": "אבוקדו", "banana": "בננה", "cherry": "דובדבן", "kiwi": "קיווי",
+                     "mango": "מנגו", "orange": "תפוז", "pinenapple": "אננס", "strawberries": "תות", "watermelon": "אבטיח"}
+        resukt= dicthenery[eName]
+        return resukt
 

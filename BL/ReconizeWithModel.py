@@ -5,7 +5,14 @@ from tensorflow.keras.utils import load_img,img_to_array
 from tensorflow.keras.models import load_model
 
 
-categorys={0: "apple",
+categorys={0: 'apple', 1: 'banana', 2: 'beetroot', 3: 'bell pepper', 4: 'cabbage', 5: 'capsicum', 6: 'carrot',
+          7: 'cauliflower', 8: 'chilli pepper', 9: 'corn', 10: 'cucumber', 11: 'eggplant', 12: 'garlic', 13: 'ginger',
+          14: 'grapes', 15: 'jalepeno', 16: 'kiwi', 17: 'lemon', 18: 'lettuce',
+          19: 'mango', 20: 'onion', 21: 'orange', 22: 'paprika', 23: 'pear', 24: 'peas', 25: 'pineapple',
+          26: 'pomegranate', 27: 'potato', 28: 'raddish', 29: 'soy beans', 30: 'spinach', 31: 'sweetcorn',
+          32: 'sweetpotato', 33: 'tomato', 34: 'turnip', 35: 'watermelon'}
+'''
+    {0: "apple",
            2: "avocado",
            1: "banana",
            3: "cherry",
@@ -15,11 +22,11 @@ categorys={0: "apple",
            7: "pinenapple",
            8: "strawberries",
            9: "watermelon"
-          }
-model = load_model("model/fruitsModel_lavel2_drope2_multdataset_epo20.h5")
+          }'''
+model = load_model("model/FV.h5")
 basic_path= "../DAL/dataset/all_data/test/"
 
-img_width, img_height = 150, 150
+img_width, img_height = 224, 224
 a=0
 countCorect=0
 channels =3

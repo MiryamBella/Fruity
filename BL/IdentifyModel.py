@@ -7,7 +7,7 @@ from tensorflow.keras.models import load_model
 
 class Identify:
     def __init__(self, instance_path=""):
-        self.pathModel = os.path.join(instance_path, "BL/model/fruitsModel.h5")
+        self.pathModel = os.path.join(instance_path, "BL/model/fruitsModel_lavel2_drope2_multdataset_epo20.h5")
         self.basicPath_train = os.path.join(instance_path, "DAL/dataset/all_data/train/")
         self.basicPath_test = os.path.join(instance_path, "DAL/dataset/all_data/test/")
         self.clientsImagePath = os.path.join(instance_path, "DAL/dataset/clientsImage/")
@@ -45,12 +45,6 @@ class Identify:
         return self.categorys[np.argmax(preds)]
 
 
-
-    def translateNameFruit2hebrew(self, eName):
-        dicthenery= {"apple": "תפוח", "avocado": "אבוקדו", "banana": "בננה", "cherry": "דובדבן", "kiwi": "קיווי",
-                     "mango": "מנגו", "orange": "תפוז", "pinenapple": "אננס", "strawberries": "תות", "watermelon": "אבטיח"}
-        resukt= dicthenery[eName]
-        return resukt
 
 
 

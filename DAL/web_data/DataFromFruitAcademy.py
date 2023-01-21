@@ -1,4 +1,4 @@
-import DataFromWeb as webData
+import DAL.web_data.DataFromWeb as webData
 
 
 
@@ -57,10 +57,12 @@ class FoodsdictionaryRecipe:
         return None
 
     def getRecipe_byNameComponet(self, com):
+        l_recipients=[]
         for r in self.recipes:
             for c in r['recipe']['components']:
                 if(com in c):
-                    return r
+                    l_recipients.append(r)
+        return l_recipients
     def getRecipe_order_byIndex(self, index):
         return self.recipes[index]['recipe']['order']
 
@@ -70,25 +72,40 @@ class FoodsdictionaryRecipe:
                 return r['recipe']['order']
         return None
 
+    def delDuplycates(self, nameFile):
+        newData=[]
+        names= []
+        for recipie in self.recipes:
+            if(recipie["name"] not in names):
+                names.append(recipie["name"])
+                newData.append(recipie)
+        self.recipes.clear()
+        for r in newData:
+            self.recipes.append(r)
 
-foodRecipes =FoodsdictionaryRecipe("jsonFiles/fruitAcademy_recipe.json")
-data=foodRecipes.getRecipes()
 '''
+foodRecipes =FoodsdictionaryRecipe("jsonFiles/fruitAcademy_recipe.json")
+foodRecipes.delDuplycates("jsonFiles/fruitAcademy_recipe.json")
+for i in foodRecipes.getRecipes():
+    print(i)
+data=foodRecipes.getRecipes()
+
 for d in data:
     if("ברוק" in d["name"]):
         print(d)
-'''
+
 r= foodRecipes.getRecipe_byNameComponet("תמר")
 print(data)
 #print(r["info"])
 #print(foodRecipes.getRecipe_byNameComponet("תמר"))
-'''
+
 for i in r["recipe"]["components"]:
     if("תמר" in i):
         print(i)
         print()
-'''
+
 #print("order", r["recipe"]["order"])
 
 
 
+'''

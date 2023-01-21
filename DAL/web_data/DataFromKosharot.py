@@ -1,7 +1,7 @@
 import requests
 from pyquery import PyQuery as pq
 
-import DataFromWeb as webData
+import DAL.web_data.DataFromWeb as webData
 
 class cosharot:
     def __init__(self, nameFile):
@@ -73,14 +73,14 @@ class cosharot:
         finalStr+='\n'
         return finalStr
 
-
+'''
 cosharotData= cosharot("jsonFiles/fruitsList.json")
 
 #print(cosharotData)
 #print(cosharotData.getString_orderFruit_byIndex(0))
 #print(cosharotData.get_f()[0])
 print(cosharotData.getFruite("תמר", cosharotData.get_f()))
-
+'''
 
 
 

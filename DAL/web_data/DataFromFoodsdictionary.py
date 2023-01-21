@@ -1,6 +1,6 @@
 import requests
 from pyquery import PyQuery as pq
-import DataFromWeb as webData
+import DAL.web_data.DataFromWeb as webData
 
 
 def getData(link, className):
@@ -65,7 +65,7 @@ table = html.find("table")
 myTable = webData.getClassObject(table, "nv-table")
 #td= myTable.find("tbody").find("tr").find("td")
 print(table)
-'''
+
 
 dataFood= Foodsdictionary_data("jsonFiles/foodsdictionary_info.json")
 
@@ -74,7 +74,7 @@ print(dataFood)
 #print(webData.enrichData(fruits[22]))
 
 #getText()ְ
-'''
+
 webData.saveDataAsJson("fruitsList.json", fruits)
 #webData.saveDataAstext("fruitsList.txt", fruits)
 #print(fruits)

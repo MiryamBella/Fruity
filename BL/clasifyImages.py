@@ -22,7 +22,7 @@ def plot_images(images, labels, sp=3):
 
 
 
-categorys={0: "apple",
+categorys= {0: "apple",
            2: "avocado",
            1: "banana",
            3: "cherry",
@@ -33,10 +33,10 @@ categorys={0: "apple",
            8: "strawberries",
            9: "watermelon"
           }
-model = load_model("model/fruitsModel.h5")
+model = load_model("model/FV.h5")
 basic_path= "../DAL/dataset/clientsImage/"
 
-img_width, img_height = 150, 150
+img_width, img_height = 224,224 #150, 150
 a=0
 countCorect=0
 channels =3

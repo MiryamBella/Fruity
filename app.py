@@ -1,3 +1,4 @@
+import json
 import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
@@ -11,25 +12,27 @@ UPLOAD_FOLDER = os.path.join(app.root_path, "DAL/dataset/clientsImage/")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 menu= ui.Menu()
 
+@app.after_request
+def after_request(response):
+    response.access_control_allow_origin = "*"
+    return response
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-'''
+
 def idnifyObject(nameFile):
-    reslt=""
-    name = menu.myIdenify.identifyObject(nameFile)
-    reslt+= name +': '
-    name= menu.myIdenify.translateNameFruit2hebrew(name)
-    reslt+= name
-    return reslt
-'''
+    name = menu.idetifyImage(nameFile)
+    return name
+
 
 
 
 
 @app.route("/")
 def hello_world():
-    return menu.mainPageAsStr()
+    return ""#menu.mainPageAsStr()
 
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -49,14 +52,36 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            #nextHtmlPage= idnifyObject(filename)
-            return menu.myIdenify.identifyObject(filename) #nextHtmlPage #redirect(url_for('download_file', name=filename))
-    return ""
+            try:
+                result = idnifyObject(filename)
+                if os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], filename)):
+                    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                else:
+                    print("The file does not exist")
+                return "{\"status\":true,\"data\":{\"name\":\""+result+"\"}}"
+            except:
+                return "{\"status\":false}"
+    return "{}"
 
-@app.route('/uploads/<name>')
+
+@app.route('/recipients/<name>')
 def download_file(name):
-    return name
+    if request.method == 'GET':
+        # check if the post request has the file part
+        '''
+        if name==None or name=="":
+            flash('No file part')
+            return redirect(request.url)
+            '''
+        try:
+            l_recipients = menu.getRecipients(menu.translateNameFruit2hebrew(name))
+            data= {"status": True, "data": l_recipients}
+            return json.dumps(data) #"{\"status\":true,\"data\":\""+str(l_recipients)+"\"}"
+        except:
+            return "{\"status\":false}"
+    return "{}"
 
+# http://178.62.223.209:5000/upload'
 #html page
 '''
 <!DOCTYPE html>
