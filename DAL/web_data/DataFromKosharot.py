@@ -42,10 +42,12 @@ class cosharot:
         webData.saveDataAsJson(nameFile, fruits)
         return webData.getDataFromJyson(nameFile)
 
-    def getFruite(self, nameFruit, listFruites):
-        for fruit in listFruites:
+    def getFruite(self, nameFruit):
+        l=[]
+        for fruit in self.fruits:
             if(nameFruit in fruit['name']):
-                return fruit['text']
+                l.append(fruit)
+        return l
 
     def getString_orderFruit_byIndex(self, index):
         finalStr=""

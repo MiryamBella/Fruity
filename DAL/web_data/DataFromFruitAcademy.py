@@ -63,6 +63,7 @@ class FoodsdictionaryRecipe:
                 if(com in c):
                     l_recipients.append(r)
         return l_recipients
+
     def getRecipe_order_byIndex(self, index):
         return self.recipes[index]['recipe']['order']
 
@@ -83,15 +84,15 @@ class FoodsdictionaryRecipe:
         for r in newData:
             self.recipes.append(r)
 
-'''
+
 foodRecipes =FoodsdictionaryRecipe("jsonFiles/fruitAcademy_recipe.json")
 foodRecipes.delDuplycates("jsonFiles/fruitAcademy_recipe.json")
 for i in foodRecipes.getRecipes():
     print(i)
 data=foodRecipes.getRecipes()
-
+'''
 for d in data:
-    if("ברוק" in d["name"]):
+    if("אבטיח" in d["name"]):
         print(d)
 
 r= foodRecipes.getRecipe_byNameComponet("תמר")
@@ -107,5 +108,3 @@ for i in r["recipe"]["components"]:
 #print("order", r["recipe"]["order"])
 
 
-
-'''

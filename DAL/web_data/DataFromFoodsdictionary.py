@@ -54,6 +54,14 @@ class Foodsdictionary_data:
         webData.saveDataAsJson(nameFile, links)
         return links
 
+    def GetData_ByName(self, name):
+        listinfo=[]
+        for f in self.linksInfo:
+            if (name in f["name"]):
+                listinfo.append(f)
+
+        return listinfo
+
 
 
 '''

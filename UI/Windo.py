@@ -58,6 +58,12 @@ class Menu:
     def getRecipients(self, name):
         return self.recepies.getRecipe_byNameComponet(name)
 
+    def getDataFruites(self, name):
+        return self.dataofFruits.GetData_ByName(name)
+
+    def getData_cosharot(self, name):
+        return self.kosharot.getFruite(name)
+
 
 
     def translateNameFruit2hebrew(self, eName):
