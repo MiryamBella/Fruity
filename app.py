@@ -26,9 +26,23 @@ def idnifyObject(nameFile):
     name = menu.idetifyImage(nameFile)
     return name
 
+'''
+def orderEndline_dict(d):
+    for kay in d.keys():
+        if (type(l[i_evar][kay]) == str):
 
 
-
+def orderEndline(l):
+    for i_evar in range(len(l)):
+        for kay in l[i_evar].keys():
+            if(type(l[i_evar][kay])== str):
+                l[i_evar][kay] = l[i_evar][kay].replace("\n", "<br/>")
+            elif(type(l[i_evar][kay])== dict):
+                for kay2 in l[i_evar].keys():
+                    if (type(l[i_evar][kay]) == str):
+                        l[i_evar][kay][kay2] = l[i_evar][kay][kay2].replace("\n", "<br/>")
+            else: l[i_evar][kay] =orderEndline(l[i_evar][kay])
+'''
 
 @app.route("/")
 def hello_world():
@@ -77,7 +91,8 @@ def download_recipints(name):
             '''
         try:
             l_recipients = menu.getRecipients(menu.translateNameFruit2hebrew(name))
-            data= {"status": True, "data": [l_recipients[0]]}
+            #orderEndline(l_recipients)
+            data= {"status": True, "data": l_recipients}
             return json.dumps(data) #"{\"status\":true,\"data\":\""+str(l_recipients)+"\"}"
         except:
             return "{\"status\":false}"

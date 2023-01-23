@@ -11,6 +11,8 @@
             console.log("start")
             $("#photo-form").submit(uploadImage)
             $("#show_recipients").click(getRecipients)
+            $("#show_data").click(getInfo)
+            $("#show_cosharot").click(getCosharotInfo)
         });
 
         function uploadImage(e) {
@@ -20,7 +22,7 @@
             var form_data = new FormData();
             form_data.append('file', file_data);
             $.ajax({
-                url: 'http://localhost:5000/upload', // point to server-side controller method
+                url: 'http://178.62.223.209:5000/upload', // point to server-side controller method
                 dataType: 'json', // what to expect back from the server
                 cache: false,
                 contentType: false,
@@ -30,17 +32,34 @@
                 success: function (response) {
                     if (response.status === true) {
                         currentObjectName = response.data.name;
-                        $('#result').html(`<span style="color: #018c01;font-weight: bolder;">${response.data.name}</span>`);
+                        $('#result').html(`<span style="color: #018c01;font-weight: bolder;">${
+                            response.data.hebrewName
+                        }</span>`);
+                        $('#result').show();
                         $('#show_recipients_container').show();
+                        $('#show_data_container').show();
+                        $('#show_cosharot_container').show();
+
+                        $('#recipientsList').hide();
+                        $('#dataOfObject').hide();
+                        $('#cosharot').hide();
                     } else {
                         $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
                         $('#show_recipients_container').hide();
+                        $('#result').hide();
+                        $('#show_data_container').hide();
+                        $('#show_cosharot_container').hide();
+
                     }
                     // display success response from the server
                 },
                 error: function (response) {
                     $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
                     $('#show_recipients_container').hide();
+                    $('#show_data_container').hide();
+                    $('#show_cosharot_container').hide();
+                    $('#result').hide();
+
                 }
             });
         }
@@ -50,7 +69,7 @@
 
             console.log("curent object: ", currentObjectName)
             $.ajax({
-                url: 'http://localhost:5000/recipients/' + currentObjectName +"", // point to server-side controller method
+                url: 'http://178.62.223.209:5000/recipients/' + currentObjectName +"", // point to server-side controller method
                 dataType: 'json', // what to expect back from the server
                 cache: false,
                 contentType: false,
@@ -61,14 +80,95 @@
                     if (response.status === true) {
                         let recipients = ""
                         for (let a of response.data) {
-                            recipients += a + "<br/>"
+                            reci= "name: " + a["name"] +"<br/>" +
+                                "recipe: The Details- " + a["recipe"]["Details"] + "<br/>" +
+                                "recipe: The components- " + a["recipe"]["components"] +"<br/>" +
+                                "recipe: The order- " + a["name"]["order"] +"<br/>"
+                            recipients += reci + "<br/>"
+                        }
+                        $('#recipientsList').html(`<span
+                                    style="color: #018c01;font-weight: bolder;">${recipients}</span>`);
+                        $('#recipientsList').show();
+                    } else {
+                        $('#recipientsList').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                        $('#recipientsList').hide();
+                    }
+                    // display success response from the server
+                },
+                error: function (response) {
+                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                    $('#show_recipients_container').hide();
+                }
+            });
+
+        }
+
+        function getInfo(e) {
+            e.preventDefault();
+
+            console.log("curent object: ", currentObjectName)
+            $.ajax({
+                url: 'http://178.62.223.209:5000/data/' + currentObjectName, // point to server-side controller method
+                dataType: 'json', // what to expect back from the server
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'get',
+                success: function (response) {
+                    console.log("got response",response)
+                    if (response.status === true) {
+                        let info = ""
+                        for (let a of response.data) {
+                            let oneInfo= "name: " + a["name"] +"<br/>" +
+                                "Details: " + a["Details"]+ "<br/>" +
+                                "info: " + a["info"] +"<br/>" +
+                                "link: " + a["link"] +"<br/>"
+                            info += oneInfo + "<br/>"
                         }
                         $('#dataOfObject').html(`<span
-                                    style="color: #018c01;font-weight: bolder;">${recipients}</span>`);
+                                    style="color: #14018c;font-weight: bolder;">${info}</span>`);
                         $('#dataOfObject').show();
                     } else {
-                        $('#dataOfObject').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                        $('#dataOfObject').hide();
+                        $('#recipientsList').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                        $('#recipientsList').hide();
+                    }
+                    // display success response from the server
+                },
+                error: function (response) {
+                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                    $('#show_recipients_container').hide();
+                }
+            });
+
+        }
+
+        function getCosharotInfo(e) {
+            e.preventDefault();
+
+            console.log("curent object: ", currentObjectName)
+            $.ajax({
+                url: 'http://178.62.223.209:5000/cosharot/' + currentObjectName, // point to server-side controller method
+                dataType: 'json', // what to expect back from the server
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'get',
+                success: function (response) {
+                    console.log("got response",response)
+                    if (response.status === true) {
+                        let info = ""
+                        for (let a of response.data) {
+                            let oneInfo= "name: " + a["name"] +"<br/>" +
+                                "text: " + a["text"]+ "<br/>" +
+                                "link: " + a["link"] +"<br/>"
+                            info += oneInfo + "<br/>"
+                        }
+                        $('#cosharot').html(`<span
+                                    style="color: #018c7c;font-weight: bolder;">${info}</span>`);
+                        $('#cosharot').show();
+                    } else {
+                        $('#cosharot').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                        $('#cosharot').hide();
                     }
                     // display success response from the server
                 },
@@ -116,13 +216,22 @@
                 <input type=submit value=Upload>
             </form>
         </div>
-        <div id="result" style="margin-top:20px;text-align: center;font-size: 76px">Result Here</div>
+        <div id="result" style="margin-top:20px;text-align: center;font-size: 76px; display: none">
+            Result Here
+        </div>
 
+        <div id="show_data_container" style="text-align: center;display: none">
+            <button id="show_data">מידע כללי על הפרי</button>
+        </div>
+        <div id="dataOfObject" style="margin-top:20px;text-align: center;font-size: 70px; display: none">data</div>
+        <div id="show_cosharot_container" style="text-align: center;display: none">
+            <button id="show_cosharot">מידע מהאתר כושרות</button>
+        </div>
+        <div id="cosharot" style="margin-top:20px;text-align: center;font-size: 70px; display: none">recipients</div>
         <div id="show_recipients_container" style="text-align: center;display: none">
             <button id="show_recipients">מתכונים</button>
         </div>
-        <div id="dataOfObject" style="margin-top:20px;text-align: center;font-size: 76px">data</div>
-        <div id="recipientsList" style="margin-top:20px;text-align: center;font-size: 76px">recipients</div>
+        <div id="recipientsList" style="margin-top:20px;text-align: center;font-size: 70px; display: none">recipients</div>
 
         <marquee style="font-size:10px;color:black;margin-top:20px;"> who am I?</marquee>
 
