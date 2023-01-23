@@ -4,6 +4,7 @@ import DAL.web_data.DataFromWeb as webData
 
 class FoodsdictionaryRecipe:
     def __init__(self, nameFile):
+        self.nameFile = nameFile
         self.recipes = webData.getDataFromJyson(nameFile)
         if (self.recipes == None):
             self.recipes = self.makeData(nameFile)
@@ -96,13 +97,30 @@ class FoodsdictionaryRecipe:
             self.recipes.append(r)
         webData.saveDataAsJson(nameFile, self.recipes)
 
+    def order_recipients(self):
+
+        for r in range(len(self.recipes)):
+            for i in range(len(self.recipes[r]["recipe"]["components"])):
+                self.recipes[r]["recipe"]["components"][i] = self.recipes[r]["recipe"]["components"][i].replace("\n",' ')
+                if ("" in self.recipes[r]["recipe"]["components"][i]):
+                    self.recipes[r]["recipe"]["components"][i] = self.recipes[r]["recipe"]["components"][i].split("")
+                    self.recipes[r]["recipe"]["components"][i] = self.recipes[r]["recipe"]["components"][i][0] + " (" + self.recipes[r]["recipe"]["components"][i][1] + ")"
+            lengh = (len(self.recipes[r]["recipe"]["components"]) + 1) // 7
+            self.recipes[r]["recipe"]["components"] = (self.recipes[r]["recipe"]["components"])[(-lengh):]
+        #webData.saveDataAsJson(self.nameFile, self.recipes)
+
+
 
 '''
 foodRecipes =FoodsdictionaryRecipe("jsonFiles/fruitAcademy_recipe.json")
+#foodRecipes.order_recipients()
 #foodRecipes.delDuplycates("jsonFiles/fruitAcademy_recipe.json")
 data=foodRecipes.getRecipes()
 #r= foodRecipes.getRecipe_byNameComponet("מנגו")
-print(foodRecipes.getRecipe_byNameComponet("אבטיח"))
+r= foodRecipes.getRecipe_byNameComponet("בננה")[0]
+#lengh= (len(r["recipe"]["components"])+1)//7
+for i in r["recipe"]["components"]:
+    print("i:", i)
 
 for i in data:
     print(i)
