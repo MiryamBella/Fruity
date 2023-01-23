@@ -1,7 +1,6 @@
 import DAL.web_data.DataFromWeb as webData
 
 
-
 class FoodsdictionaryRecipe:
     def __init__(self, nameFile):
         self.nameFile = nameFile
@@ -110,41 +109,5 @@ class FoodsdictionaryRecipe:
         #webData.saveDataAsJson(self.nameFile, self.recipes)
 
 
-
-'''
-foodRecipes =FoodsdictionaryRecipe("jsonFiles/fruitAcademy_recipe.json")
-#foodRecipes.order_recipients()
-#foodRecipes.delDuplycates("jsonFiles/fruitAcademy_recipe.json")
-data=foodRecipes.getRecipes()
-#r= foodRecipes.getRecipe_byNameComponet("מנגו")
-r= foodRecipes.getRecipe_byNameComponet("בננה")[0]
-#lengh= (len(r["recipe"]["components"])+1)//7
-for i in r["recipe"]["components"]:
-    print("i:", i)
-
-for i in data:
-    print(i)
-print(len(data))
-
-for d in data:
-    if("אבטיח" in d["name"]):
-        print(d)
-
-
-print(data)
-#print(r["info"])
-#print(foodRecipes.getRecipe_byNameComponet("תמר"))
-
-for i in r["recipe"]["components"]:
-    if("תמר" in i):
-        print(i)
-        print()
-
-#print("order", r["recipe"]["order"])
-
-
-'''
-
-
-
-
+#foodRecipes =FoodsdictionaryRecipe("jsonFiles/fruitAcademy_recipe.json")
+#data=foodRecipes.getRecipes()

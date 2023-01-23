@@ -26,24 +26,6 @@ def idnifyObject(nameFile):
     name = menu.idetifyImage(nameFile)
     return name
 
-'''
-def orderEndline_dict(d):
-    for kay in d.keys():
-        if (type(l[i_evar][kay]) == str):
-
-
-def orderEndline(l):
-    for i_evar in range(len(l)):
-        for kay in l[i_evar].keys():
-            if(type(l[i_evar][kay])== str):
-                l[i_evar][kay] = l[i_evar][kay].replace("\n", "<br/>")
-            elif(type(l[i_evar][kay])== dict):
-                for kay2 in l[i_evar].keys():
-                    if (type(l[i_evar][kay]) == str):
-                        l[i_evar][kay][kay2] = l[i_evar][kay][kay2].replace("\n", "<br/>")
-            else: l[i_evar][kay] =orderEndline(l[i_evar][kay])
-'''
-
 @app.route("/")
 def hello_world():
     return ""#menu.mainPageAsStr()
@@ -83,17 +65,10 @@ def upload_file():
 @app.route('/recipients/<name>')
 def download_recipints(name):
     if request.method == 'GET':
-        # check if the post request has the file part
-        '''
-        if name==None or name=="":
-            flash('No file part')
-            return redirect(request.url)
-            '''
         try:
             l_recipients = menu.getRecipients(menu.translateNameFruit2hebrew(name))
-            #orderEndline(l_recipients)
             data= {"status": True, "data": l_recipients}
-            return json.dumps(data) #"{\"status\":true,\"data\":\""+str(l_recipients)+"\"}"
+            return json.dumps(data)
         except:
             return "{\"status\":false}"
     return "{}"
@@ -101,16 +76,10 @@ def download_recipints(name):
 @app.route('/data/<name>')
 def getData(name):
     if request.method == 'GET':
-        # check if the post request has the file part
-        '''
-        if name==None or name=="":
-            flash('No file part')
-            return redirect(request.url)
-            '''
         try:
             l_data = menu.getDataFruites(menu.translateNameFruit2hebrew(name))
             data= {"status": True, "data": l_data}
-            return json.dumps(data) #"{\"status\":true,\"data\":\""+str(l_recipients)+"\"}"
+            return json.dumps(data)
         except:
             return "{\"status\":false}"
     return "{}"
@@ -118,16 +87,10 @@ def getData(name):
 @app.route('/cosharot/<name>')
 def getCosharotData(name):
     if request.method == 'GET':
-        # check if the post request has the file part
-        '''
-        if name==None or name=="":
-            flash('No file part')
-            return redirect(request.url)
-            '''
         try:
             l_data = menu.getData_cosharot(menu.translateNameFruit2hebrew(name))
             data= {"status": True, "data": l_data}
-            return json.dumps(data) #"{\"status\":true,\"data\":\""+str(l_recipients)+"\"}"
+            return json.dumps(data)
         except:
             return "{\"status\":false}"
     return "{}"

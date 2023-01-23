@@ -16,6 +16,7 @@ def getData(link, className):
     return a
 class Foodsdictionary_data:
     def __init__(self, nameFile):
+        self.nameFile = nameFile
         self.linksInfo = webData.getDataFromJyson(nameFile)
         if (self.linksInfo == None):
             self.linksInfo = self.makeData(nameFile)
@@ -62,9 +63,65 @@ class Foodsdictionary_data:
 
         return listinfo
 
+    def orderData(self):
+        for j in range(len(self.linksInfo)):
+            splited = self.linksInfo[j]["Details"].split('\n')
+            for i in range(0, len(splited), 2):
+                splited[i] = splited[i] + ' ' + splited[i + 1]
+                splited[i + 1] = None
+
+            while (None in splited):
+                splited.remove(None)
+
+            for i in range(len(splited)):
+                if ("" in splited[i] and i > 0):
+                    splited[i] = splited[i].split("")
+                    splited[i - 1] += ' ' + splited[i][0] + " (" + splited[i][1] + ")"
+                    splited[i] = None
+
+            while (None in splited):
+                splited.remove(None)
+
+            self.linksInfo[j]["Details"] = None
+            self.linksInfo[j]["Details"] = []
+
+            for i in range(len(splited)):
+                self.linksInfo[j]["Details"].append(splited[i])
+        webData.saveDataAsJson(self.nameFile, self.linksInfo)
+
+
 
 
 '''
+dataFood= Foodsdictionary_data("jsonFiles/foodsdictionary_info.json")
+dataFood.orderData()
+data = dataFood.get_f()
+for i in data[0]["Details"]:
+    print(i)
+
+print("link:", data[1]["link"])
+
+splited=data[1]["Details"].split('\n')
+for i in range(0, len(splited), 2):
+    splited[i] = splited[i] +' ' + splited[i+1]
+    splited[i+1] = None
+
+while (None in splited):
+    splited.remove(None)
+
+for i in range(len(splited)):
+    if ("" in splited[i] and i>0):
+        splited[i] = splited[i].split("")
+        splited[i-1] += ' ' + splited[i][0] + " (" + splited[i][1] + ")"
+        splited[i] = None
+
+while (None in splited):
+        splited.remove(None)
+
+for i in splited:
+    print(i)
+
+
 response = requests.get('https://www.foodsdictionary.co.il/articles/875')
 html = pq(response.text)
 #get the data of the fruits.
@@ -74,10 +131,6 @@ myTable = webData.getClassObject(table, "nv-table")
 #td= myTable.find("tbody").find("tr").find("td")
 print(table)
 
-
-dataFood= Foodsdictionary_data("jsonFiles/foodsdictionary_info.json")
-
-print(dataFood)
 #print(getData(links[0]['link'], "col-12"))
 #print(webData.enrichData(fruits[22]))
 

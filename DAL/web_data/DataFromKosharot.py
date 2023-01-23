@@ -9,22 +9,8 @@ class cosharot:
         if(self.fruits==None):
             self.fruits = self.makeData(nameFile)
 
-    def get_f(self):
-        return self.fruits
-
     def __str__(self):
         return f"{self.fruits}"
-
-    def getString_orderFruits(self):
-        finalStr=""
-        for fruit in self.fruits:
-            finalStr+= "name: "+ fruit["name"]
-            finalStr+='\n'
-            finalStr += "text: " + fruit["text"]
-            finalStr+='\n'
-            finalStr += "link: " + fruit["link"]
-            finalStr+='\n'
-        return finalStr
 
     def makeData(self, nameFile):
         # get html from website.
@@ -41,6 +27,20 @@ class cosharot:
 
         webData.saveDataAsJson(nameFile, fruits)
         return webData.getDataFromJyson(nameFile)
+
+    def get_f(self):
+        return self.fruits
+
+    def getString_orderFruits(self):
+        finalStr=""
+        for fruit in self.fruits:
+            finalStr+= "name: "+ fruit["name"]
+            finalStr+='\n'
+            finalStr += "text: " + fruit["text"]
+            finalStr+='\n'
+            finalStr += "link: " + fruit["link"]
+            finalStr+='\n'
+        return finalStr
 
     def getFruite(self, nameFruit):
         l=[]
@@ -75,18 +75,6 @@ class cosharot:
         finalStr+='\n'
         return finalStr
 
-'''
-cosharotData= cosharot("jsonFiles/fruitsList.json")
 
+#cosharotData= cosharot("jsonFiles/fruitsList.json")
 #print(cosharotData)
-#print(cosharotData.getString_orderFruit_byIndex(0))
-#print(cosharotData.get_f()[0])
-print(cosharotData.getFruite("תמר", cosharotData.get_f()))
-'''
-
-
-
-# my try:
-#print(cosharotData.getString_orderFruits())
-
-#print(cosharotData.getString_orderFruit_byName("תפוח"))
