@@ -1,4 +1,7 @@
-import os
+#this file are not use in project, but for testing the model.
+
+
+'''import os
 import matplotlib.pyplot as plt
 import numpy as np
 from tensorflow.keras.utils import load_img,img_to_array
@@ -50,4 +53,5 @@ for category in ["apple/","avocado/", "banana/","cherry/", "kiwi/","mango/", "or
 for h in l:
     print(h)
 print("all:", a, "corect:", countCorect)
-print(countCorect/a)
+print(countCorect/a)'''
+
