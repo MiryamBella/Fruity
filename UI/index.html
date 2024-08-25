@@ -149,43 +149,52 @@
 <body>
 
 <div class="bg">
+    <!-- the header of the page -->
     <div>
         <h1 style="text-align:center;font-size: 80px;color:purple;">Welcome to Fruity</h1>
-        <marquee style="font-size:30px;color: darkmagenta;margin-top:20px;"> who am I?</marquee>
-        <!-- uploading image -->
-        <div style="text-align: center">
-            <form id="photo-form" style="display: inline-block" action="/upload" method=post
-                  enctype=multipart/form-data >
-                <input id="file" type=file name=file class="btn btn-default" >
-                <input type=submit value=Upload class="btn btn-default">
-            </form>
+        <marquee style="font-size:30px;color: darkmagenta;margin-top:20px;"> Who am I?</marquee>
+    </div>
+    <br>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#uploadingZone">Uploading image</a></li>
+            <li><a data-toggle="tab" href="#selectFruitZone">Select Fruit</a></li>
+        </ul>
 
+        <div class="tab-content">>
+            <!-- uploading image -->
+            <div id="uploadingZone" class="tab-pane fade in active" style="text-align: center">
+                <form id="photo-form" style="display: inline-block" action="/upload" method=post
+                      enctype=multipart/form-data >
+                    <input id="file" type=file name=file class="btn btn-default" >
+                    <input type=submit value=Upload class="btn btn-default">
+                </form>
+            </div>
+            <!-- select fruit -->
+            <div id="selectFruitZone" class="dropdown tab-pane fade">
+                <form id="fruit-select" style="text-align: center" >
+                    <select id="fruitsList" name="fruits" class="btn btn-default dropdown-toggle" type="button">
+                            <option value="">None</option>
+                            <option value="apple">Apple</option>
+                            <option value="avocado">Avocado</option>
+                            <option value="banana">Banana</option>
+                            <option value="cherry">Cherry</option>
+                            <option value="kiwi">kiwi</option>
+                            <option value="mango">mango</option>
+                            <option value="watermelon">watermelon</option>
+                            <option value="strawberries">strawberries</option>
+                            <option value="pinenapple">pinenapple</option>
+                            <option value="orange">orange</option>
+                    </select>
+                    <input type=submit value=Submit-fruit class="btn btn-default">
+                </form>
+            </div>
         </div>
-        <br>
         <div id="result" style="margin-top:20px;text-align: center;font-size: 76px; display: none">
             Result Here
         </div>
         <br>
-        <div class="dropdown">
-            <form id="fruit-select" style="text-align: center" >
-                <select id="fruitsList" name="fruits" class="btn btn-default dropdown-toggle" type="button">
-                        <option value="">None</option>
-                        <option value="apple">Apple</option>
-                        <option value="avocado">Avocado</option>
-                        <option value="banana">Banana</option>
-                        <option value="cherry">Cherry</option>
-                        <option value="kiwi">kiwi</option>
-                        <option value="mango">mango</option>
-                        <option value="watermelon">watermelon</option>
-                        <option value="strawberries">strawberries</option>
-                        <option value="pinenapple">pinenapple</option>
-                        <option value="orange">orange</option>
-                </select>
-                <input type=submit value=Submit-fruit class="btn btn-default"></form>
-            </form>
-        </div>
         <br>
-
         <div style="text-align: center">
             <button class="button button3" onclick="openSecondPage()">More...</button>
         </div>

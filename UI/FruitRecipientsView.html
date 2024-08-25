@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="UI_code/DictionaryFruits.js" defer></script>
+
+    <link rel="stylesheet" type="text/css" href="style/MainPage.css">
+    <link rel="stylesheet" type="text/css" href="style/CardStyle.css">
+    <link rel="stylesheet" type="text/css" href="style/TextStyle.css">
+    <link rel="stylesheet" type="text/css" href="style/ButtonStyle.css">
+
+
     <title>Recipients</title>
 
-        <style>
+    <style>
         body, html {
             height: 100%;
             margin: 0;
@@ -176,6 +190,33 @@
             document.querySelector('#modalBody').innerHTML = modalBody
         }
 
+        function includeHTML() {
+          var z, i, elmnt, file, xhttp;
+          /*loop through a collection of all HTML elements:*/
+          z = document.getElementsByTagName("*");
+          for (i = 0; i < z.length; i++) {
+            elmnt = z[i];
+            /*search for elements with a certain atrribute:*/
+            file = elmnt.getAttribute("include-html");
+            if (file) {
+              /*make an HTTP request using the attribute value as the file name:*/
+              xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                  if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                  if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                  /*remove the attribute, and call this function once more:*/
+                  elmnt.removeAttribute("include-html");
+                  includeHTML();
+                }
+              }
+              xhttp.open("GET", file, true);
+              xhttp.send();
+              /*exit the function:*/
+              return;
+            }
+          }
+        };
     </script>
 
     <link rel="stylesheet" type="text/css" href="style/MainPage.css">
@@ -216,6 +257,15 @@
 
 </head>
 <body>
+<!--menu-->
+<div>
+    <ul class="nav nav-tabs">
+        <li><a href="#">Fruit Information</a></li>
+        <li><a href="FruitCosharotView.html">Information from Cosharot</a></li>
+        <li class="active"><a href="FruitRecipientsView.html">Recipients</a></li>
+    </ul>
+</div>
+
 <div>
     <h1 id="pophoverTitle">
 

@@ -105,7 +105,8 @@ def getCosharotData(name):
     if request.method == 'GET':
         try:
             l_data = menu.getData_cosharot(menu.translateNameFruit2hebrew(name))
-            data = {"status": True, "data": l_data}
+            pages = None
+            data = {"status": True, "data": {"data": l_data, "pages": pages}}
             return json.dumps(data)
         except:
             return "{\"status\":false}"

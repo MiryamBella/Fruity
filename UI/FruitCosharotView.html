@@ -82,7 +82,6 @@
         }
         function getCosharotInfo(e) {
             e.preventDefault();
-
             console.log("current object: ", currentFruit)
             $.ajax({ //'http://178.62.223.209:5000/
                 url: 'http://localhost:5000/cosharot/' + currentFruit, // point to server-side controller method
@@ -149,6 +148,25 @@
             console.log(namePage)
             window.location.href= namePage //'index.html';
         }
+        function success_CosharotInfo(dataReq){
+            console.log("data req", dataReq)
+            const table = document.querySelector('#cosharot');
+            pagination.numPages= dataReq.pages
+            for (let item of dataReq.data) {
+                let reci= `<tr>
+                             <td>${item["name"]}</td>
+                             <td>${item["text"]}</td>
+                             <td>
+                                <a title="Go visit the web source!" href="${item["link"]}">link</a>
+                             </td>
+                           </tr>`;
+
+                table.innerHTML += reci;
+            }
+            // $('#cosharot').html(`<span
+            //             style="color: darkmagenta;font-weight: bolder;">${info}</span>`);
+            // $('#cosharot').show();
+        }
 
 
     </script>
@@ -190,20 +208,28 @@
 
 </head>
 <body>
+<!--menu-->
 <div>
+    <ul class="nav nav-tabs">
+        <li><a href="#">Fruit Information</a></li>
+        <li class="active"><a href="FruitCosharotView.html">Information from Cosharot</a></li>
+        <li><a href="FruitRecipientsView.html">Recipients</a></li>
+    </ul>
+</div>
+
+<div>
+    <div id="data_buttons" style="text-align: right">
+            <button id="openMainPage" onclick="openOtherPage('index.html')" class="button button3">Get back to main page</button>
+<!--            <button id="show_data" class="button button3">General data about the fruit</button>-->
+<!--            <button id="show_recipients" class="button button3">recipes</button>-->
+    </div>
+
     <h1 id="pophoverTitle">
 
     </h1>
 
     <h2 style="text-align:center;font-size: 50px;color:purple;">Name:</h2>
     <p id="name" style="text-align: center; font-size:30px;color: darkmagenta;margin-top:20px;"></p>
-    <div id="data_buttons" style="text-align: center;">
-            <button id="openMainPage" onclick="openOtherPage('index.html')" class="button button3">Get back to main page</button>
-            <button id="show_data" class="button button3">General data about the fruit</button>
-            <button id="show_recipients" class="button button3">recipes</button>
-        </div>
-    <div id="" style="margin-top:20px;text-align: center;font-size: 70px; display: none">data</div>
-
     <hr>
     <!-- Cosharot Web Source -->
     <div>
@@ -223,7 +249,6 @@
             <a href="#">3</a>
             <a href="#">&raquo;</a>
         </div>
-
         <button id="show_cosharot" class="mybtn mybtn1 button5">Refresh</button>
     </div>
 

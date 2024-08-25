@@ -56,23 +56,4 @@ function successRecipents(dataReq, pagination){
     }
     $('#recipientsList').show();
 }
-function success_CosharotInfo(dataReq){
-    console.log("data req", dataReq)
-    const table = document.querySelector('#cosharot');
-    pagination.size= dataReq.pages
-    for (let item of dataReq) {
-        let reci= `<tr>
-                     <td>${item["name"]}</td>
-                     <td>${item["text"]}</td>
-                     <td>
-                        <a title="Go visit the web source!" href="${item["link"]}">link</a>
-                     </td>
-                   </tr>`;
-
-        table.innerHTML += reci;
-    }
-    $('#cosharot').html(`<span
-                style="color: darkmagenta;font-weight: bolder;">${info}</span>`);
-    $('#cosharot').show();
-}
 
