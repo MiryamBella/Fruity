@@ -147,6 +147,39 @@
                               </b></a>`;
             document.querySelector('#modalBody').innerHTML = modalBody
         }
+        function success_info(dataReq){
+            const cards = document.getElementById("dataOfObject");
+            cards.innerHTML ="";
+            let i= 0;
+            for (let a of dataReq) {
+                items.push(a);
+                let fruit_name= localStorage.getItem("currentFruit");
+
+                let oneInfo= `<div class="card flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h1><b>${a["name"]}</b></h1>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <p>${fruit_name}</p>
+                                        <div class="textHide">
+                                            <p>מידע כללי:</p>
+                                            <p>${a["info"]}</p>
+                                            <p>מידע תזונתי</p>
+                                            <p>${a["Details"]}</p>
+                                        </div>
+                                        <p>
+                                            <button onclick="orderInfoModal('${i}')" class="card-button" data-toggle="modal" data-target="#myModal">More...</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>`;
+                cards.innerHTML += oneInfo;
+                i++;
+            }
+
+            // $('#dataOfObject').show();
+        }
 
     </script>
 
@@ -196,14 +229,11 @@
     </ul>
 </div>
 <div>
-    <h1 id="pophoverTitle">  </h1>
-
-    <h2 style="text-align:center;font-size: 50px;color:purple;">Name:</h2>
-    <p id="name" style="text-align: center; font-size:30px;color: darkmagenta;margin-top:20px;"></p>
+    <h2 id="name" style="text-align:center;font-size: 50px;color:purple;">Name:&nbsp;</h2>
     <div id="data_buttons" style="text-align: center;">
-            <button id="openMainPage" onclick="openOtherPage('index.html')" class="button button3">Get back to main page</button>
-            <button id="show_cosharot" class="button button3">Data from the website Kosharot</button>
-            <button id="show_recipients" class="button button3">recipes</button>
+        <button id="openMainPage" onclick="openOtherPage('index.html')" class="button button3">Get back to main page</button>
+<!--            <button id="show_cosharot" class="button button3">Data from the website Kosharot</button>-->
+<!--            <button id="show_recipients" class="button button3">recipes</button>-->
     </div>
     <div id="" style="margin-top:20px;text-align: center;font-size: 70px; display: none">data</div>
 

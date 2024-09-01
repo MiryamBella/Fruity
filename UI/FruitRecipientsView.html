@@ -61,6 +61,7 @@
             numPages: 0 // how many pages are.
         };
         let items= []
+        let busy= false;
 
 
 
@@ -83,7 +84,7 @@
             currentFruit = localStorage.getItem("currentFruit")
             console.log("currrent fruit in page", currentFruit)
 
-            document.querySelector('#name').innerHTML = FruitDictionary[currentFruit];
+            document.querySelector('#name').innerHTML += FruitDictionary[currentFruit];
         }
 
         function getInfo(e) {
@@ -123,7 +124,7 @@
         }
         function getRecipients(e) {
             e.preventDefault();
-
+            busy = true;
             console.log("curent object: ", currentFruit)
             console.log("pagaation before", pagination)
             $.ajax({ // 'http://178.62.223.209:5000/
@@ -146,14 +147,14 @@
                             console.log("Error details: "+ response.data.details.toString())
                             console.log("Error data: "+ response.data.data.toString())
                         }
-                        $('#recipientsList').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                        $('#recipientsList').hide();
                     }
                     // display success response from the server
+                    busy= false;
                 },
                 error: function (response) {
-                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                    $('#show_recipients_container').hide();
+                    window.alert("Error in conection!")
+                    console.log(response)
+                    busy= false;
                 }
             });
 
@@ -260,23 +261,18 @@
 <!--menu-->
 <div>
     <ul class="nav nav-tabs">
-        <li><a href="#">Fruit Information</a></li>
+        <li><a href="FruitInformationView.html">Fruit Information</a></li>
         <li><a href="FruitCosharotView.html">Information from Cosharot</a></li>
         <li class="active"><a href="FruitRecipientsView.html">Recipients</a></li>
     </ul>
 </div>
 
 <div>
-    <h1 id="pophoverTitle">
-
-    </h1>
-
-    <h2 style="text-align:center;font-size: 50px;color:purple;">Name:</h2>
-    <p id="name" style="text-align: center; font-size:30px;color: darkmagenta;margin-top:20px;"></p>
-    <div id="data_buttons" style="text-align: center;">
-            <button id="openMainPage" onclick="openOtherPage('index.html')" class="button button3">Get back to main page</button>
-            <button id="show_data" class="button button3">General data about the fruit</button>
-            <button id="show_cosharot" class="button button3">recipes</button>
+    <div>
+        <h2 id="name" style="text-align:center;font-size: 50px;color:purple;">Name:&nbsp;</h2>
+        <button id="openMainPage" style="text-align: right" onclick="openOtherPage('index.html')" class="button button3">Get back to main page</button>
+<!--            <button id="show_data" class="button button3">General data about the fruit</button>-->
+<!--            <button id="show_cosharot" class="button button3">recipes</button>-->
         </div>
     <div id="" style="margin-top:20px;text-align: center;font-size: 70px; display: none">data</div>
 
@@ -288,7 +284,7 @@
             <button id="show_recipients" class="mybtn mybtn1 button5">Refresh</button>
         </h2>
 
-        <table id="recipientsList">
+        <table id="recipientsList" aria-busy="true">
             <tr>
                 <th>Name</th>
                 <th>Information</th>
