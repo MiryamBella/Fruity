@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="UI_code/DictionaryFruits.js" defer></script>
+    <title>Fruit Information</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button2 {background-color: #008CBA;} /* Blue */
+        .button3 {background-color: #541c86;}
+        .button4 {background-color: #e7e7e7; color: black;} /* Gray */
+        .button5 {background-color: #555555;} /* Black */
+        .bg {
+            /* The image used */
+            background-image: url("https://lh3.googleusercontent.com/jwrxPseZDuYJuzUt5u3YxhfJYjHAmRoRB0MCxFoBiz5L3vZeL1csRZwsTaBx3JJbPCYSs2KgpAltrNnofrFyQlIhgNfUptrOe_AxG4K6D8LS0VJEqYt6SOoVmaMjoYncxbDnvxVxYPqaav3c-NNU3PoR_VOeyg_BxCfXf98iVSe5nuvJdMvxP4Y0bTCrc1wWe76E7Cz-VtFssRrWzEzym6YCJip1_T7ovqHpjPQv-ZuIWBQrhvmsQqZgBF6SottreX9VuMl56K_OzzP1Ky2NUEBj7qnOFv-ApFdsnGit03-8zsh5IJ1ZuKYp4P9sYlxLNP2kca7m55Z0ZUbETAztVF-G26inrJJjgO6ISc5rXg-G3DRtv9gRQWV7V-aJmTTbEsQbF43lgqD_sE0TAkxLn4BFtpnb5IKsLR6KT8LBgZGVJoIZMCtFVSuI59nd4uUcYxt6kvhZMxV3Ysa4HHwiyJFU9FTS26Xz2SnBU0Im4r58wSrK8S4vgQBI5ZI7ubzpv2jyEnrpAv8H1xBk3P9440k2gl4EmtOS6kDbVqgNIkeQ0Y52K8UT9QBzItjzSf2jbHhPXNPh6WMKM2jJ7-P0M47p2m5zpPb9f80imQkgfZ12BZsJJuoyeYfR3yqxe70cMLQl8WkrpRoCy78bYmH9BwfGotIIrClzoWwKKK46OIDhqpZW3Rq1zQPzFzfMV0nGhi8To3ApoJ3i_gZ8dS83PGd1icpJiPrydvnmnzr6JVJ0igSPvYxBggKqAjaLEPtgATnqDn0JjvJzNNMs_mn39v0s9PRgaiHvMjS4fp_6WSPTj_tjT1byC7-9g9iOPoTFaiKxF20TNVUoMv3bgnhXwI-P9DzkCakIhkBp3rkt63oP0qnFqCXVwCXwdEdS8vJnqC1dPxIXkpd_FXzw3JWpkor3qVCzO3JucrEPqONDwRyMApEKgXmkGrPPte7oGHyGbtBM45Wh0iPj0bcwTSHBUQ=w386-h220-no?authuser=0");
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+    <script>
+        let currentFruit= '';
+        let pagination= {
+            page: 1, // the current page
+            size: 3, // the size of the page, how many items in each page.
+            numPages: 0 // how many pages are.
+        };
+        let items= []
+
+
+
+        //Main
+        $(document).ready(function () {
+            $("#show_recipients").click(getRecipients)
+            $("#show_data").click(getInfo)
+            $("#show_cosharot").click(getCosharotInfo)
+
+            startPage();
+            includeHTML();
+        });
+
+        window.onload = function() {
+            // Simulate the button click when the page loads
+            document.getElementById('show_data').click();
+        };
+
+        function startPage(){
+            currentFruit = localStorage.getItem("currentFruit")
+            console.log("currrent fruit in page", currentFruit)
+
+            document.querySelector('#name').innerHTML = FruitDictionary[currentFruit];
+            document.getElementById("show_data").click()
+
+        }
+
+        function getInfo(e) {
+            e.preventDefault();
+            $('#spinnerLoading').show();
+            console.log("curent object: ", currentFruit)
+            $.ajax({ // 'http://178.62.223.209:5000/
+                url: 'http://localhost:5000/data/' + currentFruit, // point to server-side controller method
+                dataType: 'json', // what to expect back from the server
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'get',
+                success: function (response) {
+                    console.log("got response",response)
+                    if (response.status === true) {
+                        success_info(response.data);
+                    } else {
+                        if(response.data == null)
+                            console.log("not data return")
+                        else{
+                            console.log("Error details: "+ response.data.details.toString())
+                            console.log("Error data: "+ response.data.data.toString())
+                        }
+
+                        $('#recipientsList').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                        $('#recipientsList').hide();
+                    }
+                    // display success response from the server
+                    $('#spinnerLoading').hide();
+                },
+                error: function (response) {
+                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                    $('#show_recipients_container').hide();
+                    $('#spinnerLoading').hide();
+                }
+
+            });
+
+        }
+        function getRecipients(e) {
+            e.preventDefault();
+            openOtherPage("FruitRecipientsView.html")
+        }
+        function getCosharotInfo(e) {
+            e.preventDefault();
+            openOtherPage("FruitCosharotView.html")
+        }
+
+        function openOtherPage(pageName){
+            window.location.href=pageName;
+        }
+        function orderInfoModal(indexItem){
+            console.log("some string", indexItem)
+            let item = items[indexItem]
+            let tempModalInfo=''
+            for (let i =0; i< item["Details"].length; i++){
+                tempModalInfo += item["Details"][i] + `<br>`
+            }
+            console.log("temp", tempModalInfo)
+            document.querySelector('#modalHeader').innerHTML = item["name"]
+            let modalBody = `<p> <b>
+                                מידע כללי:
+                             </b></p>
+                             <p>${item["info"]}</p>
+                             <p> <b>
+                             מידע תזונתי
+                             </b></p>
+                             <p>${tempModalInfo}</p>
+                             <a href=${item['link']}> <b>
+                                קישור לאתר המקור
+                              </b></a>`;
+            document.querySelector('#modalBody').innerHTML = modalBody
+        }
+        function success_info(dataReq){
+            const cards = document.getElementById("dataOfObject");
+            cards.innerHTML ="";
+            let i= 0;
+            for (let a of dataReq) {
+                items.push(a);
+                let fruit_name= localStorage.getItem("currentFruit");
+
+                let oneInfo= `<div class="card flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h1><b>${a["name"]}</b></h1>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <p>${fruit_name}</p>
+                                        <div class="textHide">
+                                            <p>מידע כללי:</p>
+                                            <p>${a["info"]}</p>
+                                            <p>מידע תזונתי</p>
+                                            <p>${a["Details"]}</p>
+                                        </div>
+                                        <p>
+                                            <button onclick="orderInfoModal('${i}')" class="card-button" data-toggle="modal" data-target="#myModal">More...</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>`;
+                cards.innerHTML += oneInfo;
+                i++;
+            }
+
+            // $('#dataOfObject').show();
+        }
+
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="style/MainPage.css">
+    <link rel="stylesheet" type="text/css" href="style/CardStyle.css">
+    <link rel="stylesheet" type="text/css" href="style/TextStyle.css">
+    <link rel="stylesheet" type="text/css" href="style/ButtonStyle.css">
+
+    <script>
+        function includeHTML() {
+          var z, i, elmnt, file, xhttp;
+          /*loop through a collection of all HTML elements:*/
+          z = document.getElementsByTagName("*");
+          for (i = 0; i < z.length; i++) {
+            elmnt = z[i];
+            /*search for elements with a certain atrribute:*/
+            file = elmnt.getAttribute("include-html");
+            if (file) {
+              /*make an HTTP request using the attribute value as the file name:*/
+              xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                  if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                  if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                  /*remove the attribute, and call this function once more:*/
+                  elmnt.removeAttribute("include-html");
+                  includeHTML();
+                }
+              }
+              xhttp.open("GET", file, true);
+              xhttp.send();
+              /*exit the function:*/
+              return;
+            }
+          }
+        };
+    </script>
+    <script src="UI_code/SuccessRequest.js" defer></script>
+</head>
+
+<body>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#">Fruit Information</a></li>
+        <li><a href="FruitCosharotView.html">Information from Cosharot</a></li>
+        <li><a href="FruitRecipientsView.html">Recipients</a></li>
+    </ul>
+</div>
+<div>
+    <h2 id="name" style="text-align:center;font-size: 50px;color:purple;">Name:&nbsp;</h2>
+    <div id="data_buttons" style="text-align: center;">
+        <button id="openMainPage" onclick="openOtherPage('index.html')" class="button button3">Get back to main page</button>
+<!--            <button id="show_cosharot" class="button button3">Data from the website Kosharot</button>-->
+<!--            <button id="show_recipients" class="button button3">recipes</button>-->
+    </div>
+    <div id="" style="margin-top:20px;text-align: center;font-size: 70px; display: none">data</div>
+
+    <!-- Fruit Information -->
+    <div style="text-align: center">
+        <h2>
+            Fruit Information
+            <button id="show_data" class="mybtn mybtn1 button5" style="display: none">refresh</button>
+        </h2>
+        <div id="dataOfObject">
+            <div class="center-item">
+                <div id="spinnerLoading" class="loader" style="display: none"></div>
+            </div>
+            <div class="flip-card card">
+<!--                <div class="flip-card-inner">-->
+<!--                    <div class="flip-card-front">-->
+<!--                           <h1>John Doe</h1>-->
+<!--                   </div>-->
+<!--                    <div class="flip-card-back">-->
+<!--                        <p>information on the fruit</p>-->
+<!--                        <div class="textHide">-->
+<!--                          <p>-->
+<!--                              Lorem ipsum dolor sit amet. Et internos voluptatum est temporibus fugit aut sunt quia.-->
+<!--                              Et totam maxime et itaque repellat eos rerum adipisci qui excepturi nobis et provident provident-->
+<!--                              cum consequatur voluptas eos quam accusantium.-->
+<!--                              Ut quia consequuntur et beatae corrupti non praesentium voluptates et pariatur corrupti.-->
+
+<!--Et autem dolorem aut natus iure et dolorem tenetur. Aut quae rerum est delectus unde sit quidem maxime est ipsum sunt et eius fugiat et minima repudiandae. Vel totam odit ut voluptatum reprehenderit aut neque consequatur est dignissimos omnis sit laboriosam assumenda quo voluptatibus rerum?-->
+
+<!--Et quia minus ut officia sunt ut nesciunt error nam quia voluptas et minima porro est ipsum omnis quo dolorem perspiciatis. Rem totam molestiae qui voluptatum corporis quo quidem Quis cum dolor voluptas sed ipsam distinctio.-->
+<!--                          </p>-->
+<!--                          <p>We love that guy</p>-->
+<!--                        </div>-->
+<!--                        <p>-->
+<!--                            <button onclick="orderInfoModal('ss')" class="card-button" data-toggle="modal" data-target="#myModal">More...</button>-->
+<!--                        </p>-->
+<!--                      </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+        </div>
+
+    <div include-HTML="fruitInformationModal.html"></div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+
+div.textHide {
+    height:7.1em;
+    overflow:hidden;
+    word-wrap: break-word;
+}
+/*div.excerpt:hover { height:auto; color:green }*/
+
+tr { cursor: default; }
+.highlight { background: yellow; }
+
+

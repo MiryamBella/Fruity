@@ -1,0 +1,53 @@
+h1 {
+	text-align: center;
+	color: green;
+}
+
+.mybtn {
+	color: beige;
+	height: 50px;
+	font-size: 20px;
+	margin: 5px;
+	border: none;
+	width: auto;
+}
+
+.btnbox {
+	display: flex;
+	justify-content: center;
+}
+
+.mybtn:hover {
+	background-color: rgb(184, 224, 219);
+	color: rgb(82, 82, 74);
+	box-shadow: rgba(32, 31, 31, 0.35) 0px 7px 10px;
+	font-weight: 900;
+
+}
+
+.mybtn3 {
+	border-radius: 50%;
+	background-color: red;
+}
+
+.mybtn1 {
+	border-radius: 10px;
+}
+
+.mybtn2 {
+	border-radius: 1.5rem;
+	background-color: green;
+}
+
+.mybtn4 {
+	border-radius: 20px;
+	background-color: rgb(196, 156, 103);
+}
+
+.mybtn5 {
+	border-radius: 5px;
+	background-color: rgb(70, 194, 132);
+}
+.bluviolotButton {
+	background-color: blueviolet;
+}

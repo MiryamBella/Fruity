@@ -1,205 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" ,charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" >-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
 
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script>
-        var currentObjectName = null;
-        //Main
-        $(document).ready(function () {
-            console.log("start")
-            $("#photo-form").submit(uploadImage)
-            $("#show_recipients").click(getRecipients)
-
-
-            $("#show_data").click(getInfo)
-            $("#show_cosharot").click(getCosharotInfo)
-        });
-
-        function uploadImage(e) {
-            e.preventDefault();
-
-            var file_data = $('#file').prop('files')[0];
-            var form_data = new FormData();
-            form_data.append('file', file_data);
-            $.ajax({
-                url: 'http://178.62.223.209:5000/upload', // point to server-side controller method
-                dataType: 'json', // what to expect back from the server
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function (response) {
-                    if (response.status === true) {
-                        currentObjectName = response.data.name;
-                        $('#result').html(`<span style="color: darkmagenta;font-weight: bolder;">${
-                            response.data.hebrewName
-                        }</span>`);
-                        $('#result').show();
-                        $('#show_recipients_container').show();
-                        $('#show_data_container').show();
-                        $('#show_cosharot_container').show();
-
-                        $('#recipientsList').hide();
-                        $('#dataOfObject').hide();
-                        $('#cosharot').hide();
-                    } else {
-                        $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                        $('#show_recipients_container').hide();
-                        $('#result').hide();
-                        $('#show_data_container').hide();
-                        $('#show_cosharot_container').hide();
-
-                    }
-                    // display success response from the server
-                },
-                error: function (response) {
-                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                    $('#show_recipients_container').hide();
-                    $('#show_data_container').hide();
-                    $('#show_cosharot_container').hide();
-                    $('#result').show();
-
-                }
-            });
-        }
-
-        function getRecipients(e) {
-            e.preventDefault();
-
-            console.log("curent object: ", currentObjectName)
-            $.ajax({
-                url: 'http://178.62.223.209:5000/recipients/' + currentObjectName +"", // point to server-side controller method
-                dataType: 'json', // what to expect back from the server
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'get',
-                success: function (response) {
-                    console.log("got response",response)
-                    if (response.status === true) {
-                        let recipients = ""
-                        for (let a of response.data) {
-                            reci= "name: " + a["name"] +"<br/>" +
-                                "Information: " + a["info"] +"<br/>" +
-                                "recipe: The Details- " + a["recipe"]["Details"] + "<br/>" +"recipe: The components- "
-                            for (let com of a["recipe"]["components"]) {
-                                reci += com + "<br/>"
-                            }
-                            reci += "<br/>" + "recipe: The order- " + a["recipe"]["order"] +"<br/>" +
-                                "Link to the website: " + a["link"] + "<br/>"
-                            recipients += reci + "<br/>"
-                        }
-                        $('#recipientsList').html(`<span
-                                    style="color: darkmagenta;font-weight: bolder;">${recipients}</span>`);
-                        $('#recipientsList').show();
-                    } else {
-                        $('#recipientsList').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                        $('#recipientsList').hide();
-                    }
-                    // display success response from the server
-                },
-                error: function (response) {
-                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                    $('#show_recipients_container').hide();
-                }
-            });
-
-        }
-
-        function getInfo(e) {
-            e.preventDefault();
-
-            console.log("curent object: ", currentObjectName)
-            $.ajax({
-                url: 'http://178.62.223.209:5000/data/' + currentObjectName, // point to server-side controller method
-                dataType: 'json', // what to expect back from the server
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'get',
-                success: function (response) {
-                    console.log("got response",response)
-                    if (response.status === true) {
-                        let info = ""
-                        for (let a of response.data) {
-                            let oneInfo= "name: " + a["name"] +"<br/>" +"Details: "
-                            for (let d of a["Details"]) {
-                                oneInfo += d + "<br/>"
-                            }
-                            oneInfo += "info: " + a["info"] +"<br/>" +
-                                "link: " + a["link"] +"<br/>"
-                            info += oneInfo + "<br/>"
-                        }
-                        $('#dataOfObject').html(`<span
-                                    style="color: darkmagenta;font-weight: bolder;">${info}</span>`);
-                        $('#dataOfObject').show();
-                    } else {
-                        $('#recipientsList').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                        $('#recipientsList').hide();
-                    }
-                    // display success response from the server
-                },
-                error: function (response) {
-                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                    $('#show_recipients_container').hide();
-                }
-            });
-
-        }
-
-        function getCosharotInfo(e) {
-            e.preventDefault();
-
-            console.log("curent object: ", currentObjectName)
-            $.ajax({
-                url: 'http://178.62.223.209:5000/cosharot/' + currentObjectName, // point to server-side controller method
-                dataType: 'json', // what to expect back from the server
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'get',
-                success: function (response) {
-                    console.log("got response",response)
-                    if (response.status === true) {
-                        let info = ""
-                        for (let a of response.data) {
-                            let oneInfo= "name: " + a["name"] +"<br/>" +
-                                "text: " + a["text"]+ "<br/>" +
-                                "link: " + a["link"] +"<br/>"
-                            info += oneInfo + "<br/>"
-                        }
-                        $('#cosharot').html(`<span
-                                    style="color: darkmagenta;font-weight: bolder;">${info}</span>`);
-                        $('#cosharot').show();
-                    } else {
-                        $('#cosharot').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                        $('#cosharot').hide();
-                    }
-                    // display success response from the server
-                },
-                error: function (response) {
-                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
-                    $('#show_recipients_container').hide();
-                }
-            });
-
-        }
-
-
-    </script>
-
+    <link rel="stylesheet" type="text/css" href="style/MainPage.css">
+    <link rel="stylesheet" type="text/css" href="style/CardStyle.css">
     <style>
         body, html {
             height: 100%;
             margin: 0;
         }
         .button {
-            background-color: #4CAF50; /* Green */
+            background-color: #1bef1f; /* Green */
             border: none;
             color: white;
             padding: 15px 32px;
@@ -212,7 +34,7 @@
         }
 
         .button2 {background-color: #008CBA;} /* Blue */
-        .button3 {background-color: #541c86;} /* Red */
+        .button3 {background-color: #541c86;}
         .button4 {background-color: #e7e7e7; color: black;} /* Gray */
         .button5 {background-color: #555555;} /* Black */
         .bg {
@@ -227,45 +49,172 @@
             background-size: cover;
         }
     </style>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <script src="UI_code/DictionaryFruits.js" defer></script>
+    <script>
+        let currentObjectName = "";
+        let busy = false
+
+
+        //Main
+        $(document).ready(function () {
+            $("#photo-form").submit(uploadImage)
+            $("#fruit-select").submit(selectFruit)
+        });
+
+        function uploadImage(e) {
+            e.preventDefault();
+
+            $('#spinnerLoading').show();
+
+            var file_data = $('#file').prop('files')[0];
+            var form_data = new FormData();
+            form_data.append('file', file_data);
+            $.ajax({
+                url: 'http://localhost:5000/upload', // 'http://178.62.223.209:5000/upload', // point to server-side controller method
+                dataType: 'json', // what to expect back from the server
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function (response) {
+                    console.log("response", response)
+                    if (response.status === true) {
+                        currentObjectName = response.data.name;
+                        localStorage.setItem("currentFruit", currentObjectName);
+                        console.log(this.currentObjectName)
+
+                        $('#result').html(`<span style="color: darkmagenta;font-weight: bolder;">${
+                            response.data.hebrewName
+                        }</span>`);
+                        $('#result').show();
+                        $('#data_buttons').show();
+
+                        $('#recipientsList').hide();
+                        $('#dataOfObject').hide();
+                        $('#cosharot').hide();
+                    } else {
+                        if(response.data == null)
+                            console.log("not data return")
+                        else{
+                            console.log("Error details: "+ response.data.details.toString())
+                            console.log("Error data: "+ response.data.data.toString())
+                        }
+                        $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                        $('#data_buttons').hide();
+                        $('#result').show();
+                    }
+                    $('#spinnerLoading').hide();
+                },
+                error: function (response) {
+                    console.log("Error sending reqwest.")
+                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                    $('#data_buttons').hide();
+                    $('#result').show();
+
+                }
+            });
+        }
+        function selectFruit(e) {
+            e.preventDefault();
+            let selectedFruit = $('#fruitsList :selected').val();
+            if (selectedFruit === "" || !(selectedFruit in FruitDictionary)) {
+                $('#result').html(`<span style="color: #ffc90b;font-weight: bolder;">No fruit had been selected</span>`);
+                $('#data_buttons').hide();
+                $('#result').show();
+                return;
+            }
+            currentObjectName = selectedFruit
+            console.log("curren", currentObjectName)
+            localStorage.setItem("currentFruit", currentObjectName);
+
+            $('#result').html(`<span style="color: darkmagenta;font-weight: bolder;">${
+                FruitDictionary[selectedFruit]
+            }</span>`);
+            $('#result').show();
+            $('#data_buttons').show();
+        }
+
+        function openSecondPage(){
+            if(currentObjectName===""){
+                window.alert("Chose first a fruit or uploud image of fruit.")
+                return;
+            }
+            localStorage.setItem("currentFruit", currentObjectName);
+            window.location.href='FruitInformationView.html';
+        }
+
+    </script>
+    <title></title>
+
+
 </head>
 <body>
 
 <div class="bg">
-    <p>B"H</p>
+    <!-- the header of the page -->
     <div>
         <h1 style="text-align:center;font-size: 80px;color:purple;">Welcome to Fruity</h1>
-        <div style="text-align: center">
-            <form id="photo-form" style="display: inline-block" action="/upload" method=post
-                  enctype=multipart/form-data>
-                <input id="file" type=file name=file>
-                <input type=submit value=Upload>
-            </form>
+        <marquee style="font-size:30px;color: darkmagenta;margin-top:20px;"> Who am I?</marquee>
+    </div>
+    <br>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#uploadingZone">Uploading image</a></li>
+            <li><a data-toggle="tab" href="#selectFruitZone">Select Fruit</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- uploading image -->
+            <div id="uploadingZone" class="tab-pane fade in active" style="text-align: center">
+                <form id="photo-form" style="display: inline-block" action="/upload" method=post
+                      enctype=multipart/form-data >
+                    <input id="file" type=file name=file class="btn btn-default" >
+                    <input type=submit value=Upload class="btn btn-default">
+                </form>
+            </div>
+            <!-- select fruit -->
+            <div id="selectFruitZone" class="dropdown tab-pane fade">
+                <form id="fruit-select" style="text-align: center" >
+                    <select id="fruitsList" name="fruits" class="btn btn-default dropdown-toggle" type="button">
+                            <option value="">None</option>
+                            <option value="apple">Apple</option>
+                            <option value="avocado">Avocado</option>
+                            <option value="banana">Banana</option>
+                            <option value="cherry">Cherry</option>
+                            <option value="kiwi">kiwi</option>
+                            <option value="mango">mango</option>
+                            <option value="watermelon">watermelon</option>
+                            <option value="strawberries">strawberries</option>
+                            <option value="pinenapple">pinenapple</option>
+                            <option value="orange">orange</option>
+                    </select>
+                    <input type=submit value=Submit-fruit class="btn btn-default">
+                </form>
+            </div>
         </div>
         <div id="result" style="margin-top:20px;text-align: center;font-size: 76px; display: none">
             Result Here
         </div>
-
-        <div id="show_data_container" style="text-align: center;display: none">
-            <button id="show_data" class="button button3">General data about the fruit</button>
+        <div class="center-item">
+            <div id="spinnerLoading" class="loader" style="display: none"></div>
         </div>
-        <div id="dataOfObject" style="margin-top:20px;text-align: center;font-size: 70px; display: none">data</div>
-        <div id="show_cosharot_container" style="text-align: center;display: none">
-            <button id="show_cosharot" class="button button3">Data from the website Kosharot</button>
-        </div>
-        <div id="cosharot" style="margin-top:20px;text-align: center;font-size: 70px; display: none">recipients</div>
-        <div id="show_recipients_container" style="text-align: center;display: none">
-            <button id="show_recipients" class="button button3">recipes</button>
-        </div>
-        <div id="recipientsList" style="margin-top:20px;text-align: center;font-size: 70px; display: none">recipients</div>
+        <br>
+        <br>
 
-        <marquee style="font-size:30px;color: darkmagenta;margin-top:20px;"> who am I?</marquee>
+        <div style="text-align: center">
 
+            <button class="button button3" onclick="openSecondPage()">More...</button>
+        </div>
+        <div  class="container mt-3">
+        </div>
     </div>
 </div>
-<script>
-
-</script>
-
 
 </body>
 </html>
