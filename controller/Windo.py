@@ -39,7 +39,6 @@ class Menu:
 
 
     def idetifyImage(self, nameImage, instance_path=""):
-        print("aaaa")
         nameObject= self.myIdenify.identifyObject(nameImage)
         #nameObject = self.myIdenify.translateNameFruit2hebrew(nameObject)
 
@@ -60,7 +59,14 @@ class Menu:
         return nameObject
 
     def getRecipients(self, name, pageNumber, pageSize):
-        return self.recipes.GetRecipe_orderByComonet(name, pageNumber, pageSize)
+        return self.recipes.GetRecipes_ByComonet_mainFunc(name, pageNumber, pageSize)
+
+    def getRecipintByIndex(self, index):
+        return self.recipes.getRecipe_byIndex(index)
+
+    def getCosharotByIndex(self, index):
+        print(index)
+        return self.kosharot.getByIndex(index)
 
     def getDataFruites(self, name):
         return self.dataFruits.GetData_ByName(name)
@@ -74,3 +80,15 @@ class Menu:
         result= self.dictionary[eName]
         return result
 
+
+'''
+menu = Menu()
+
+for key in menu.dictionary.keys():
+    r_l, pages=menu.getRecipients(key, 1, 100)
+    s= len(r_l)
+    print(key, s)
+    
+    for i in range(s):
+        print(r_l[i])
+        '''

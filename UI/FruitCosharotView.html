@@ -9,6 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script src="UI_code/DictionaryFruits.js" defer></script>
+    <script src="UI_code/SuccessRequest.js" defer></script>
 
     <title> Information from Cosharot</title>
     <style>
@@ -50,7 +51,7 @@
         let currentFruit= '';
         let pagination= {
             page: 1, // the current page
-            size: 3, // the size of the page, how many items in each page.
+            size: 2, // the size of the page, how many items in each page.
             numPages: 0 // how many pages are.
         };
         let items= []
@@ -82,6 +83,7 @@
         }
         function getCosharotInfo(e) {
             e.preventDefault();
+            $('#spinnerLoading').show();
             console.log("current object: ", currentFruit)
             $.ajax({ //'http://178.62.223.209:5000/
                 url: 'http://localhost:5000/cosharot/' + currentFruit, // point to server-side controller method
@@ -90,10 +92,46 @@
                 contentType: false,
                 processData: false,
                 type: 'get',
+                data: jQuery.param({"pageNumber": pagination.page, "pageSize": pagination.size}),
                 success: function (response) {
                     console.log("got response",response)
                     if (response.status === true) {
                         success_CosharotInfo(response.data)
+                    } else {
+                        if(response.data == null)
+                            console.log("not data return")
+                        else{
+                            console.log("Error details: "+ response.data.details.toString())
+                            console.log("Error data: "+ response.data.data.toString())
+                        }
+
+                        $('#cosharot').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                        $('#cosharot').hide();
+                    }
+                    // display success response from the server
+                    $('#spinnerLoading').hide();
+                },
+                error: function (response) {
+                    $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
+                    $('#show_recipients_container').hide();
+                    $('#spinnerLoading').hide();
+
+                }
+            });
+
+        }
+        function getOneCosharotInfo(index) {
+            $.ajax({ //'http://178.62.223.209:5000/ /cosharot/one/<index>
+                url: 'http://localhost:5000/cosharot/one/' + index +'', // point to server-side controller method
+                dataType: 'json', // what to expect back from the server
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'get',
+                success: function (response) {
+                    console.log("got response",response)
+                    if (response.status === true) {
+                        orderModal(response.data)
                     } else {
                         if(response.data == null)
                             console.log("not data return")
@@ -120,25 +158,21 @@
             console.log("currrent fruit in page", currentFruit)
 
             document.querySelector('#name').innerHTML = FruitDictionary[currentFruit];
+            document.getElementById("show_cosharot").click()
+        }
+        function changeDataPage(numPage, sizePage){
+            pagination.page= numPage
+            pagination.size = sizePage
+            document.getElementById("show_cosharot").click()
         }
 
-        function orderInfoModal(indexItem){
-            console.log("some string", indexItem)
-            let item = items[indexItem]
-            let tempModalInfo=''
-            for (let i =0; i< item["Details"].length; i++){
-                tempModalInfo += item["Details"][i] + `<br>`
-            }
-            console.log("temp", tempModalInfo)
+        function orderModal(data){
+            let item = data.item
+            console.log("item", item)
             document.querySelector('#modalHeader').innerHTML = item["name"]
-            let modalBody = `<p> <b>
-                                מידע כללי:
-                             </b></p>
-                             <p>${item["info"]}</p>
-                             <p> <b>
-                             מידע תזונתי
-                             </b></p>
-                             <p>${tempModalInfo}</p>
+            let modalBody = `<p> <b> מידע כללי: </b></p>
+                             <p>${item["text"]}</p>
+
                              <a href=${item['link']}> <b>
                                 קישור לאתר המקור
                               </b></a>`;
@@ -151,9 +185,15 @@
         function success_CosharotInfo(dataReq){
             console.log("data req", dataReq)
             const table = document.querySelector('#cosharot');
+            table.innerHTML =`<tr>
+                        <th>Name</th>
+                        <th>Information</th>
+                        <th>Link</th>
+                      </tr>`
             pagination.numPages= dataReq.pages
+            cratePagination(pagination.page)
             for (let item of dataReq.data) {
-                let reci= `<tr>
+                let reci= `<tr data-toggle="modal" data-target="#myModal" onclick= "getOneCosharotInfo(${item["index"]})">
                              <td>${item["name"]}</td>
                              <td>${item["text"]}</td>
                              <td>
@@ -163,9 +203,6 @@
 
                 table.innerHTML += reci;
             }
-            // $('#cosharot').html(`<span
-            //             style="color: darkmagenta;font-weight: bolder;">${info}</span>`);
-            // $('#cosharot').show();
         }
 
 
@@ -184,7 +221,7 @@
           for (i = 0; i < z.length; i++) {
             elmnt = z[i];
             /*search for elements with a certain atrribute:*/
-            file = elmnt.getAttribute("include-html");
+            file = elmnt.getAttribute("dataModal");
             if (file) {
               /*make an HTTP request using the attribute value as the file name:*/
               xhttp = new XMLHttpRequest();
@@ -193,7 +230,7 @@
                   if (this.status == 200) {elmnt.innerHTML = this.responseText;}
                   if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
                   /*remove the attribute, and call this function once more:*/
-                  elmnt.removeAttribute("include-html");
+                  elmnt.removeAttribute("dataModal");
                   includeHTML();
                 }
               }
@@ -211,7 +248,7 @@
 <!--menu-->
 <div>
     <ul class="nav nav-tabs">
-        <li><a href="#">Fruit Information</a></li>
+        <li><a href="FruitInformationView.html">Fruit Information</a></li>
         <li class="active"><a href="FruitCosharotView.html">Information from Cosharot</a></li>
         <li><a href="FruitRecipientsView.html">Recipients</a></li>
     </ul>
@@ -223,6 +260,7 @@
 <!--            <button id="show_data" class="button button3">General data about the fruit</button>-->
 <!--            <button id="show_recipients" class="button button3">recipes</button>-->
     </div>
+        <button id="show_cosharot" class="mybtn mybtn1 button5" style="display:none;">Refresh</button>
 
     <h1 id="pophoverTitle">
 
@@ -235,26 +273,28 @@
     <div>
         <h2>Cosharot Web Source</h2>
 
-        <table id="cosharot">
+        <table class="table table-striped table-hover" id="cosharot">
             <tr>
                 <th>Name</th>
                 <th>Information</th>
                 <th>Link</th>
             </tr>
         </table>
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">&raquo;</a>
+        <div id="paginationBox">
+            <div class="pagination" id="paginationSelector">
+    <!--            <a href="#">&laquo;</a>-->
+    <!--            <a href="#" class="">1</a>-->
+    <!--            <a href="#" class="active">6</a>-->
+    <!--            <a href="#">&raquo;</a>-->
+            </div>
         </div>
-        <button id="show_cosharot" class="mybtn mybtn1 button5">Refresh</button>
     </div>
+        <div class="center-item">
+            <div id="spinnerLoading" class="loader" style="display: none">
+        </div>
 
 
-
-    <div include-HTML="fruitInformationModal.html"></div>
+    <div dataModal="fruitInformationModal.html"></div>
 
 </div>
 </body>

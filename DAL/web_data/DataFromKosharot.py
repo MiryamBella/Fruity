@@ -3,10 +3,11 @@ from pyquery import PyQuery as pq
 
 import DAL.web_data.DataFromWeb as webData
 
+
 class cosharot:
     def __init__(self, nameFile):
-        self.fruits=webData.getDataFromJyson(nameFile)
-        if(self.fruits==None):
+        self.fruits = webData.getDataFromJyson(nameFile)
+        if (self.fruits == None):
             self.fruits = self.makeData(nameFile)
 
     def __str__(self):
@@ -32,49 +33,59 @@ class cosharot:
         return self.fruits
 
     def getString_orderFruits(self):
-        finalStr=""
+        finalStr = ""
         for fruit in self.fruits:
-            finalStr+= "name: "+ fruit["name"]
-            finalStr+='\n'
+            finalStr += "name: " + fruit["name"]
+            finalStr += '\n'
             finalStr += "text: " + fruit["text"]
-            finalStr+='\n'
+            finalStr += '\n'
             finalStr += "link: " + fruit["link"]
-            finalStr+='\n'
+            finalStr += '\n'
         return finalStr
 
     def getFruite(self, nameFruit):
-        l=[]
+        l = []
         for fruit in self.fruits:
-            if(nameFruit in fruit['name']):
+            if (nameFruit in fruit['name']):
                 l.append(fruit)
         return l
 
     def getString_orderFruit_byIndex(self, index):
-        finalStr=""
-        finalStr+= "name: "+ self.fruits[index]["name"]
-        finalStr+='\n'
+        finalStr = ""
+        finalStr += "name: " + self.fruits[index]["name"]
+        finalStr += '\n'
         finalStr += "text: " + self.fruits[index]["text"]
-        finalStr+='\n'
+        finalStr += '\n'
         finalStr += "link: " + self.fruits[index]["link"]
-        finalStr+='\n'
+        finalStr += '\n'
         return finalStr
+
+    def getByIndex(self, index):
+        if (index is not None and str(index).isnumeric()):
+            index = int(index)
+        else:
+            raise Exception("Sorry, index number no numeric")
+        print("the index", index)
+        return self.fruits[index]
 
     def getString_orderFruit_byName(self, name):
-        finalStr=""
-        index=0
-        i=0
+        finalStr = ""
+        index = 0
+        i = 0
         for f in self.fruits:
-            if(name in f["name"]):
-                index=i
-            i+=1
-        finalStr+= "name: "+ self.fruits[index]["name"]
-        finalStr+='\n'
+            if (name in f["name"]):
+                index = i
+            i += 1
+        finalStr += "name: " + self.fruits[index]["name"]
+        finalStr += '\n'
         finalStr += "text: " + self.fruits[index]["text"]
-        finalStr+='\n'
+        finalStr += '\n'
         finalStr += "link: " + self.fruits[index]["link"]
-        finalStr+='\n'
+        finalStr += '\n'
         return finalStr
 
-
-#cosharotData= cosharot("jsonFiles/fruitsList.json")
-#print(cosharotData)
+    def delItem(self, index):
+        self.fruits.pop(index)
+        for i in range(index, len(self.fruits)):
+            self.fruits[i]["index"] = i
+        webData.saveDataAsJson("jsonFiles/fruitsList.json", self.fruits)

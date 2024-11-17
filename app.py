@@ -104,12 +104,41 @@ def getData(name):
 def getCosharotData(name):
     if request.method == 'GET':
         try:
+            page_number =request.args.get("pageNumber")
+            page_size = request.args.get("pageSize")
+
             l_data = menu.getData_cosharot(menu.translateNameFruit2hebrew(name))
-            pages = None
+            pages = 1
             data = {"status": True, "data": {"data": l_data, "pages": pages}}
             return json.dumps(data)
         except:
             return "{\"status\":false}"
     return "{}"
+
+@app.route('/cosharot/one/<index>')
+def get_oneCosharot(index):
+    print("get cosharot function")
+    if request.method == 'GET':
+        try:
+            cashroot = menu.getCosharotByIndex(index)
+            data = {"status": True, "data": {"item": cashroot}}
+            return json.dumps(data)
+        except:
+            data = {"status": False, "data": None}
+            return json.dumps(data)
+    return "{}"
+@app.route('/recipient/<index>')
+def download_oneRecipint(index):
+    # print("get recipients function")
+    if request.method == 'GET':
+        try:
+            recipient = menu.getRecipintByIndex(index)
+            data = {"status": True, "data": {"item": recipient}}
+            return json.dumps(data)
+        except:
+            data = {"status": False, "data": None}
+            return json.dumps(data)
+    return "{}"
+
 
 # http://178.62.223.209:5000/upload'

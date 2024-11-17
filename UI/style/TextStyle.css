@@ -6,6 +6,7 @@ div.textHide {
 }
 /*div.excerpt:hover { height:auto; color:green }*/
 
-
+tr { cursor: default; }
+.highlight { background: yellow; }
 
 

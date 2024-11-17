@@ -76,11 +76,13 @@
             console.log("currrent fruit in page", currentFruit)
 
             document.querySelector('#name').innerHTML = FruitDictionary[currentFruit];
+            document.getElementById("show_data").click()
+
         }
 
         function getInfo(e) {
             e.preventDefault();
-
+            $('#spinnerLoading').show();
             console.log("curent object: ", currentFruit)
             $.ajax({ // 'http://178.62.223.209:5000/
                 url: 'http://localhost:5000/data/' + currentFruit, // point to server-side controller method
@@ -105,11 +107,14 @@
                         $('#recipientsList').hide();
                     }
                     // display success response from the server
+                    $('#spinnerLoading').hide();
                 },
                 error: function (response) {
                     $('#result').html(`<span style="color: #c75d0c;font-weight: bolder;">ERROR!</span>`);
                     $('#show_recipients_container').hide();
+                    $('#spinnerLoading').hide();
                 }
+
             });
 
         }
@@ -241,34 +246,37 @@
     <div style="text-align: center">
         <h2>
             Fruit Information
-            <button id="show_data" class="mybtn mybtn1 button5">refresh</button>
+            <button id="show_data" class="mybtn mybtn1 button5" style="display: none">refresh</button>
         </h2>
         <div id="dataOfObject">
+            <div class="center-item">
+                <div id="spinnerLoading" class="loader" style="display: none"></div>
+            </div>
             <div class="flip-card card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                           <h1>John Doe</h1>
-                   </div>
-                    <div class="flip-card-back">
-                        <p>information on the fruit</p>
-                        <div class="textHide">
-                          <p>
-                              Lorem ipsum dolor sit amet. Et internos voluptatum est temporibus fugit aut sunt quia.
-                              Et totam maxime et itaque repellat eos rerum adipisci qui excepturi nobis et provident provident
-                              cum consequatur voluptas eos quam accusantium.
-                              Ut quia consequuntur et beatae corrupti non praesentium voluptates et pariatur corrupti.
+<!--                <div class="flip-card-inner">-->
+<!--                    <div class="flip-card-front">-->
+<!--                           <h1>John Doe</h1>-->
+<!--                   </div>-->
+<!--                    <div class="flip-card-back">-->
+<!--                        <p>information on the fruit</p>-->
+<!--                        <div class="textHide">-->
+<!--                          <p>-->
+<!--                              Lorem ipsum dolor sit amet. Et internos voluptatum est temporibus fugit aut sunt quia.-->
+<!--                              Et totam maxime et itaque repellat eos rerum adipisci qui excepturi nobis et provident provident-->
+<!--                              cum consequatur voluptas eos quam accusantium.-->
+<!--                              Ut quia consequuntur et beatae corrupti non praesentium voluptates et pariatur corrupti.-->
 
-Et autem dolorem aut natus iure et dolorem tenetur. Aut quae rerum est delectus unde sit quidem maxime est ipsum sunt et eius fugiat et minima repudiandae. Vel totam odit ut voluptatum reprehenderit aut neque consequatur est dignissimos omnis sit laboriosam assumenda quo voluptatibus rerum?
+<!--Et autem dolorem aut natus iure et dolorem tenetur. Aut quae rerum est delectus unde sit quidem maxime est ipsum sunt et eius fugiat et minima repudiandae. Vel totam odit ut voluptatum reprehenderit aut neque consequatur est dignissimos omnis sit laboriosam assumenda quo voluptatibus rerum?-->
 
-Et quia minus ut officia sunt ut nesciunt error nam quia voluptas et minima porro est ipsum omnis quo dolorem perspiciatis. Rem totam molestiae qui voluptatum corporis quo quidem Quis cum dolor voluptas sed ipsam distinctio.
-                          </p>
-                          <p>We love that guy</p>
-                        </div>
-                        <p>
-                            <button onclick="orderInfoModal('ss')" class="card-button" data-toggle="modal" data-target="#myModal">More...</button>
-                        </p>
-                      </div>
-                </div>
+<!--Et quia minus ut officia sunt ut nesciunt error nam quia voluptas et minima porro est ipsum omnis quo dolorem perspiciatis. Rem totam molestiae qui voluptatum corporis quo quidem Quis cum dolor voluptas sed ipsam distinctio.-->
+<!--                          </p>-->
+<!--                          <p>We love that guy</p>-->
+<!--                        </div>-->
+<!--                        <p>-->
+<!--                            <button onclick="orderInfoModal('ss')" class="card-button" data-toggle="modal" data-target="#myModal">More...</button>-->
+<!--                        </p>-->
+<!--                      </div>-->
+<!--                </div>-->
             </div>
         </div>
         </div>

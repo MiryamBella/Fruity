@@ -8,8 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="UI_code/DictionaryFruits.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" >
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="UI_code/DictionaryFruits.js" defer></script>
     <link rel="stylesheet" type="text/css" href="style/MainPage.css">
     <link rel="stylesheet" type="text/css" href="style/CardStyle.css">
     <link rel="stylesheet" type="text/css" href="style/TextStyle.css">
@@ -57,7 +59,7 @@
         let currentFruit= '';
         let pagination= {
             page: 1, // the current page
-            size: 3, // the size of the page, how many items in each page.
+            size: 5, // the size of the page, how many items in each page.
             numPages: 0 // how many pages are.
         };
         let items= []
@@ -80,11 +82,12 @@
             document.getElementById('show_recipients').click();
         };
 
-        function startPage(){
+        async function startPage() {
             currentFruit = localStorage.getItem("currentFruit")
             console.log("currrent fruit in page", currentFruit)
 
             document.querySelector('#name').innerHTML += FruitDictionary[currentFruit];
+            await document.getElementById("show_recipients").click()
         }
 
         function getInfo(e) {
@@ -124,6 +127,7 @@
         }
         function getRecipients(e) {
             e.preventDefault();
+            $('#spinnerLoading').show();
             busy = true;
             console.log("curent object: ", currentFruit)
             console.log("pagaation before", pagination)
@@ -138,8 +142,47 @@
                 success: function (response) {
                     console.log("got response",response)
                     if (response.status === true) {
+                        console.log(response)
                         successRecipents(response.data, pagination);
-                        console.log(pagination)
+                    } else {
+                        if(response.data == null)
+                            console.log("not data return")
+                        else{
+                            console.log("Error details: "+ response.data.details.toString())
+                            console.log("Error data: "+ response.data.data.toString())
+                        }
+                    }
+                    // display success response from the server
+                    busy= false;
+                    $('#spinnerLoading').hide();
+                },
+                error: function (response) {
+                    window.alert("Error in conection!")
+                    console.log(response)
+                    busy= false;
+                    $('#spinnerLoading').hide();
+                }
+            });
+
+        }
+        function getCosharotInfo(e) {
+            e.preventDefault();
+            openOtherPage("FruitCosharotView.html")
+
+        }
+
+        function getOneRecipient(index){
+            $.ajax({ // 'http://178.62.223.209:5000/
+                url: 'http://localhost:5000/recipient/' + index +"", // point to server-side controller method
+                dataType: 'json', // what to expect back from the server
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'get',
+                success: function (response) {
+                    console.log("got response",response)
+                    if (response.status === true) {
+                        openModal(response.data)
                     } else {
                         if(response.data == null)
                             console.log("not data return")
@@ -157,67 +200,56 @@
                     busy= false;
                 }
             });
-
         }
-        function getCosharotInfo(e) {
-            e.preventDefault();
-            openOtherPage("FruitCosharotView.html")
 
+        function changeDataPage(numPage, sizePage){
+            pagination.page= numPage
+            pagination.size = sizePage
+            document.getElementById("show_recipients").click()
         }
 
         function openOtherPage(pageName){
             window.location.href=pageName;
         }
-        function orderInfoModal(indexItem){
-            console.log("some string", indexItem)
-            let item = items[indexItem]
+        function openModal(data){
+            let item = data.item
+            console.log("item", item)
+            let modalDetaills = item["recipe"]["Details"].replace(/\n/g, "<br>");
+            modalDetaills = modalDetaills.replace(/סוג המנה/g, "&nbsp;:סוג המנה&nbsp;");
+            modalDetaills = modalDetaills.replace(/דרגת קושי/g, "&nbsp;:דרגת קושי&nbsp;");
+            modalDetaills = modalDetaills.replace(/זמן הכנה/g, "&nbsp;:זמן הכנה&nbsp;");
+            modalDetaills = modalDetaills.replace(/כשרות/g, "&nbsp;:כשרות&nbsp;");
             let tempModalInfo=''
-            for (let i =0; i< item["Details"].length; i++){
-                tempModalInfo += item["Details"][i] + `<br>`
+            for (let i =0; i< item["recipe"]["components"].length; i++){
+                tempModalInfo += item["recipe"]["components"][i] + `<br>`
             }
-            console.log("temp", tempModalInfo)
+            console.log("name", item["name"])
             document.querySelector('#modalHeader').innerHTML = item["name"]
             let modalBody = `<p> <b>
                                 מידע כללי:
                              </b></p>
                              <p>${item["info"]}</p>
+
                              <p> <b>
-                             מידע תזונתי
+                             סוג המנה
+                             </b></p>
+                             <p>${modalDetaills}</p>
+
+                             <p> <b>
+                             מרכיבים
                              </b></p>
                              <p>${tempModalInfo}</p>
+                             <p> <b>
+                             דרך הכנה
+                             </b></p>
+                             <p>${item["recipe"]["order"]}</p>
+
                              <a href=${item['link']}> <b>
                                 קישור לאתר המקור
                               </b></a>`;
             document.querySelector('#modalBody').innerHTML = modalBody
         }
 
-        function includeHTML() {
-          var z, i, elmnt, file, xhttp;
-          /*loop through a collection of all HTML elements:*/
-          z = document.getElementsByTagName("*");
-          for (i = 0; i < z.length; i++) {
-            elmnt = z[i];
-            /*search for elements with a certain atrribute:*/
-            file = elmnt.getAttribute("include-html");
-            if (file) {
-              /*make an HTTP request using the attribute value as the file name:*/
-              xhttp = new XMLHttpRequest();
-              xhttp.onreadystatechange = function() {
-                if (this.readyState == 4) {
-                  if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-                  if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-                  /*remove the attribute, and call this function once more:*/
-                  elmnt.removeAttribute("include-html");
-                  includeHTML();
-                }
-              }
-              xhttp.open("GET", file, true);
-              xhttp.send();
-              /*exit the function:*/
-              return;
-            }
-          }
-        };
     </script>
 
     <link rel="stylesheet" type="text/css" href="style/MainPage.css">
@@ -225,15 +257,17 @@
     <link rel="stylesheet" type="text/css" href="style/TextStyle.css">
     <link rel="stylesheet" type="text/css" href="style/ButtonStyle.css">
 
+    <script src="UI_code/SuccessRequest.js" defer></script>
     <script>
         function includeHTML() {
+            console.log("in include: ikkkk")
           var z, i, elmnt, file, xhttp;
           /*loop through a collection of all HTML elements:*/
           z = document.getElementsByTagName("*");
           for (i = 0; i < z.length; i++) {
             elmnt = z[i];
             /*search for elements with a certain atrribute:*/
-            file = elmnt.getAttribute("include-html");
+            file = elmnt.getAttribute("modalInfo");
             if (file) {
               /*make an HTTP request using the attribute value as the file name:*/
               xhttp = new XMLHttpRequest();
@@ -242,7 +276,7 @@
                   if (this.status == 200) {elmnt.innerHTML = this.responseText;}
                   if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
                   /*remove the attribute, and call this function once more:*/
-                  elmnt.removeAttribute("include-html");
+                  elmnt.removeAttribute("modalInfo");
                   includeHTML();
                 }
               }
@@ -252,9 +286,8 @@
               return;
             }
           }
-        };
+        }
     </script>
-    <script src="UI_code/SuccessRequest.js" defer></script>
 
 </head>
 <body>
@@ -273,7 +306,7 @@
         <button id="openMainPage" style="text-align: right" onclick="openOtherPage('index.html')" class="button button3">Get back to main page</button>
 <!--            <button id="show_data" class="button button3">General data about the fruit</button>-->
 <!--            <button id="show_cosharot" class="button button3">recipes</button>-->
-        </div>
+    </div>
     <div id="" style="margin-top:20px;text-align: center;font-size: 70px; display: none">data</div>
 
     <hr>
@@ -281,30 +314,34 @@
     <div>
         <h2>
             Recipients Web Source
-            <button id="show_recipients" class="mybtn mybtn1 button5">Refresh</button>
+            <button id="show_recipients" class="mybtn mybtn1 button5" style="display: none">Refresh</button>
         </h2>
 
-        <table id="recipientsList" aria-busy="true">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover" id="recipientsList" aria-busy="true">
             <tr>
                 <th>Name</th>
                 <th>Information</th>
                 <th>Link</th>
             </tr>
         </table>
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">&raquo;</a>
         </div>
-
+        <div class="pagination" id="paginationBox">
+            <ul class="pagination" id="paginationSelector">
+    <!--            <a href="#">&laquo;</a>-->
+    <!--            <a href="#" class="">1</a>-->
+    <!--            <a href="#" class="active">6</a>-->
+    <!--            <a href="#">&raquo;</a>-->
+            </ul>
+        </div>
+        <div class="center-item">
+            <div id="spinnerLoading" class="loader" style="display: none"></div>
+        </div>
     </div>
 
 
-
-    <div include-HTML="fruitInformationModal.html"></div>
-
+    <div modalInfo="fruitInformationModal.html"></div>
 </div>
 </body>
+
 </html>
