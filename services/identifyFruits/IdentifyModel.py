@@ -11,7 +11,7 @@ import tensorflow as tf
 
 class Identify:
     def __init__(self, instance_path=""):
-        self.pathModel = os.path.join(instance_path, "../services/identifyFruits/model/keras3/fruitsModel_keras3_224size_erlestop.keras")
+        self.pathModel = os.path.join(instance_path, "../services/identifyFruits/model/fruitsModel_keras3_224size_erlestop.keras")
         self.basicPath_train = os.path.join(instance_path, "../../DAL/dataset/all_data/train/")
         self.basicPath_test = os.path.join(instance_path, "../../DAL/dataset/all_data/test/")
         self.clientsImagePath = os.path.join(instance_path, "../DAL/dataset/clientsImage/")
