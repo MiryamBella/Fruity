@@ -75,7 +75,7 @@
             var form_data = new FormData();
             form_data.append('file', file_data);
             $.ajax({
-                url: 'http://localhost:5000/upload', // 'http://178.62.223.209:5000/upload', // point to server-side controller method
+                url: HomeUrl + 'upload', // 'http://178.62.223.209:5000/upload', // point to server-side controller method
                 dataType: 'json', // what to expect back from the server
                 cache: false,
                 contentType: false,

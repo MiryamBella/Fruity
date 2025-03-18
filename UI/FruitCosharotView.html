@@ -86,7 +86,7 @@
             $('#spinnerLoading').show();
             console.log("current object: ", currentFruit)
             $.ajax({ //'http://178.62.223.209:5000/
-                url: 'http://localhost:5000/cosharot/' + currentFruit, // point to server-side controller method
+                url: HomeUrl +'cosharot/' + currentFruit, // point to server-side controller method
                 dataType: 'json', // what to expect back from the server
                 cache: false,
                 contentType: false,
