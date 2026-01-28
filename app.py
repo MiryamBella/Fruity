@@ -30,7 +30,7 @@ def idnifyObject(nameFile):
 
 @app.route("/")
 def hello_world():
-    print("when it enter here?")
+    print("Welcom to the server. It is the default router")
     return ""  # menu.mainPageAsStr()
 
 
@@ -72,14 +72,14 @@ def upload_file():
 
 
 @app.route('/recipients/<name>')
-def download_recipints(name):
-    # print("get recipients function")
+def getRecipints(name):
+    print("get recipients function")
     if request.method == 'GET':
         try:
             page_number =request.args.get("pageNumber")
             page_size = request.args.get("pageSize")
             l_recipients, pages = menu.getRecipients(name, page_number, page_size)
-            data = {"status": True, "data": {"data": l_recipients, "pages":pages}}
+            data = {"status": True, "data": {"dataList": l_recipients, "pages":pages}}
             return json.dumps(data)
         except:
             data = {"status": False, "data": None}
@@ -89,15 +89,31 @@ def download_recipints(name):
 
 @app.route('/data/<name>')
 def getData(name):
+    print("getting data")
     if request.method == 'GET':
         try:
             l_data = menu.getDataFruites(menu.translateNameFruit2hebrew(name))
-            data = {"status": True, "data": l_data}
+            data = {"status": True, "data": {"dataList": l_data}}
             return json.dumps(data)
         except:
             data = {"status": False, "data": None}
             return json.dumps(data)
     return "{}"
+
+@app.route('/data/one/<index>')
+def getData_one(index):
+    print("getting one data")
+    if request.method == 'GET':
+        try:
+            l_data = menu.getGeneralDataByIndex(index)
+            data = {"status": True, "data":{"item": l_data}}
+            return json.dumps(data)
+        except:
+            data = {"status": False, "data": None}
+            return json.dumps(data)
+    return "{}"
+
+
 
 
 @app.route('/cosharot/<name>')
@@ -109,14 +125,15 @@ def getCosharotData(name):
 
             l_data = menu.getData_cosharot(menu.translateNameFruit2hebrew(name))
             pages = 1
-            data = {"status": True, "data": {"data": l_data, "pages": pages}}
+            data = {"status": True, "data": {"dataList": l_data, "pages": pages}}
             return json.dumps(data)
         except:
             return "{\"status\":false}"
     return "{}"
 
+
 @app.route('/cosharot/one/<index>')
-def get_oneCosharot(index):
+def getCosharot_one(index):
     print("get cosharot function")
     if request.method == 'GET':
         try:
@@ -128,7 +145,7 @@ def get_oneCosharot(index):
             return json.dumps(data)
     return "{}"
 @app.route('/recipient/<index>')
-def download_oneRecipint(index):
+def getRecipint_one(index):
     # print("get recipients function")
     if request.method == 'GET':
         try:
@@ -139,6 +156,7 @@ def download_oneRecipint(index):
             data = {"status": False, "data": None}
             return json.dumps(data)
     return "{}"
+
 
 
 # http://178.62.223.209:5000/upload'

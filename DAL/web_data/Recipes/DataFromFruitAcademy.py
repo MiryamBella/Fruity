@@ -51,7 +51,7 @@ class FoodsdictionaryRecipe:
                 # to get details:
                 divs = webData.getDivs(tempList[i]['link'])
                 details = webData.getClassObject(divs.find("ul"), "recipe-basic-details")
-                recipeOrder['Details'] = details.text()
+                recipeOrder['details'] = details.text()
 
                 ul = webData.getClassObject(divs.find("ul"), "howto-list")
                 recipeOrder['order'] = ul.text()

@@ -68,11 +68,16 @@ class Menu:
         print(index)
         return self.kosharot.getByIndex(index)
 
+    def getData_cosharot(self, name):
+        return self.kosharot.getFruite(name)
+
     def getDataFruites(self, name):
         return self.dataFruits.GetData_ByName(name)
 
-    def getData_cosharot(self, name):
-        return self.kosharot.getFruite(name)
+    def getGeneralDataByIndex(self, index):
+        print(index)
+        return self.dataFruits.getByIndex(index)
+
 
 
 

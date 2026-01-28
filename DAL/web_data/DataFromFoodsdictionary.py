@@ -43,7 +43,7 @@ class Foodsdictionary_data:
             html = pq(response.text)
             table = html.find("div").find("table")
             myTable = webData.getClassObject(table, "nv-table")
-            links[i]["Details"] = (myTable.text()).replace(
+            links[i]["details"] = (myTable.text()).replace(
                 "\nלמה לבדוק ערך תזונתי של מוצר אחד?5 ימי ניסיון חינם במחשבון הקלוריות", '')
 
             divs = html.find("div")
@@ -62,6 +62,14 @@ class Foodsdictionary_data:
                 listinfo.append(f)
 
         return listinfo
+
+    def getByIndex(self, index):
+        if (index is not None and str(index).isnumeric()):
+            index = int(index)
+        else:
+            raise Exception("Sorry, index number no numeric")
+        print("the index", index)
+        return self.linksInfo[index]
 
     def orderData(self):
         for j in range(len(self.linksInfo)):

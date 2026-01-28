@@ -132,7 +132,7 @@
             console.log("curent object: ", currentFruit)
             console.log("pagaation before", pagination)
             $.ajax({ // 'http://178.62.223.209:5000/
-                url: 'http://localhost:5000/recipients/' + currentFruit +"", // point to server-side controller method
+                url: HomeUrl + 'recipients/' + currentFruit +"", // point to server-side controller method
                 dataType: 'json', // what to expect back from the server
                 cache: false,
                 contentType: false,

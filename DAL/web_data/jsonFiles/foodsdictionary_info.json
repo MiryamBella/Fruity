@@ -3,7 +3,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05ea\u05e4\u05d5\u05d7",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%AA%D7%A4%D7%95%D7%97%20%D7%A2%D7%A5%20%D7%A2%D7%9D%20%D7%A7%D7%9C%D7%99%D7%A4%D7%94",
         "index": 0,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 52",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.26",
@@ -44,7 +44,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d0\u05d2\u05e1",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%90%D7%92%D7%A1",
         "index": 1,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 58",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.382",
@@ -84,7 +84,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d1\u05e0\u05e0\u05d4",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%91%D7%A0%D7%A0%D7%94",
         "index": 2,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 89",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.09",
@@ -125,7 +125,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d0\u05e4\u05e8\u05e1\u05e7",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%90%D7%A4%D7%A8%D7%A1%D7%A7",
         "index": 3,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 42",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.91",
@@ -171,7 +171,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d0\u05e4\u05e8\u05e1\u05de\u05d5\u05df",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%90%D7%A4%D7%A8%D7%A1%D7%9E%D7%95%D7%9F",
         "index": 4,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 70",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.58",
@@ -212,7 +212,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05de\u05e9\u05de\u05e9",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%9E%D7%A9%D7%9E%D7%A9",
         "index": 5,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 48",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.4",
@@ -252,7 +252,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e2\u05e0\u05d1\u05d9\u05dd",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A2%D7%A0%D7%91%D7%99%D7%9D%20%D7%99%D7%A8%D7%95%D7%A7%D7%99%D7%9D%20%D7%90%D7%95%20%D7%90%D7%93%D7%95%D7%9E%D7%99%D7%9D",
         "index": 6,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 69",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.72",
@@ -293,7 +293,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05ea\u05e4\u05d5\u05d6",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%AA%D7%A4%D7%95%D7%96",
         "index": 7,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 47",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.94",
@@ -332,7 +332,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05dc\u05d9\u05de\u05d5\u05df",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%9C%D7%99%D7%9E%D7%95%D7%9F%20%D7%9C%D7%9C%D7%90%20%D7%A7%D7%9C%D7%99%D7%A4%D7%94",
         "index": 8,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 29",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.1",
@@ -372,7 +372,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e8\u05d9\u05de\u05d5\u05df",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A8%D7%99%D7%9E%D7%95%D7%9F",
         "index": 9,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 83",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.67",
@@ -413,7 +413,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e7\u05dc\u05de\u05e0\u05d8\u05d9\u05e0\u05d4",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A7%D7%9C%D7%9E%D7%A0%D7%98%D7%99%D7%A0%D7%94",
         "index": 10,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 47",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.85",
@@ -445,7 +445,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e9\u05d6\u05d9\u05e3",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A9%D7%96%D7%99%D7%A3",
         "index": 11,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 46",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.7",
@@ -485,7 +485,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e7\u05d9\u05d5\u05d5\u05d9",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A7%D7%99%D7%95%D7%95%D7%99",
         "index": 12,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 61",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.99",
@@ -513,7 +513,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05ea\u05d5\u05ea \u05e9\u05d3\u05d4",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%AA%D7%95%D7%AA%20%D7%A9%D7%93%D7%94",
         "index": 13,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 32",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.67",
@@ -554,7 +554,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05ea\u05de\u05e8\u05d9\u05dd",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%AA%D7%9E%D7%A8%20-%20%D7%9E%D7%92%2560%D7%94%D7%95%D7%9C",
         "index": 14,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 277",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.81",
@@ -586,7 +586,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d0\u05d1\u05d8\u05d9\u05d7",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%90%D7%91%D7%98%D7%99%D7%97",
         "index": 15,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 30",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.61",
@@ -628,7 +628,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05de\u05dc\u05d5\u05df",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%9E%D7%9C%D7%95%D7%9F",
         "index": 16,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 34",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.84",
@@ -669,7 +669,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d0\u05d1\u05d5\u05e7\u05d3\u05d5",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%90%D7%91%D7%95%D7%A7%D7%93%D7%95",
         "index": 17,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 160",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 2",
@@ -710,7 +710,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05de\u05dc\u05e4\u05e4\u05d5\u05df \u05d9\u05e8\u05d5\u05e7",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%9E%D7%9C%D7%A4%D7%A4%D7%95%D7%9F%20%D7%A2%D7%9D%20%D7%A7%D7%9C%D7%99%D7%A4%D7%94",
         "index": 18,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 15",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.65",
@@ -751,7 +751,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e2\u05d2\u05d1\u05e0\u05d9\u05d4",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A2%D7%92%D7%91%D7%A0%D7%99%D7%94",
         "index": 19,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 18",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.887",
@@ -793,7 +793,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d1\u05e6\u05dc",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%91%D7%A6%D7%9C",
         "index": 20,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 40",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.1",
@@ -833,7 +833,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e4\u05dc\u05e4\u05dc \u05d0\u05d3\u05d5\u05dd",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A4%D7%9C%D7%A4%D7%9C%20%D7%90%D7%93%D7%95%D7%9D",
         "index": 21,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 31",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.99",
@@ -874,7 +874,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e4\u05dc\u05e4\u05dc \u05e6\u05d4\u05d5\u05d1",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A4%D7%9C%D7%A4%D7%9C%20%D7%A6%D7%94%D7%95%D7%91",
         "index": 22,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 27",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1",
@@ -907,7 +907,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e4\u05dc\u05e4\u05dc \u05d9\u05e8\u05d5\u05e7",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A4%D7%9C%D7%A4%D7%9C%20%D7%99%D7%A8%D7%95%D7%A7",
         "index": 23,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 20",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.86",
@@ -948,7 +948,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05db\u05e8\u05d5\u05d1",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%9B%D7%A8%D7%95%D7%91",
         "index": 24,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 25",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.28",
@@ -988,7 +988,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d2\u05d6\u05e8",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%92%D7%96%D7%A8",
         "index": 25,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 41",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.93",
@@ -1030,7 +1030,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05ea\u05e4\u05d5\u05d7 \u05d0\u05d3\u05de\u05d4",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%AA%D7%A4%D7%95%D7%97%20%D7%90%D7%93%D7%9E%D7%94%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C%20%D7%9C%D7%9C%D7%90%20%D7%A7%D7%9C%D7%99%D7%A4%D7%94",
         "index": 26,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 86",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.71",
@@ -1070,7 +1070,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d1\u05d8\u05d8\u05d4",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%91%D7%98%D7%98%D7%94%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C%D7%AA%20%D7%9C%D7%9C%D7%90%20%D7%A7%D7%9C%D7%99%D7%A4%D7%94",
         "index": 27,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 76",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.37",
@@ -1109,7 +1109,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d1\u05e8\u05d5\u05e7\u05d5\u05dc\u05d9",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%91%D7%A8%D7%95%D7%A7%D7%95%D7%9C%D7%99%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C",
         "index": 28,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 35",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 2.38",
@@ -1150,7 +1150,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d7\u05e6\u05d9\u05dc",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%97%D7%A6%D7%99%D7%9C%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C",
         "index": 29,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 35",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.83",
@@ -1191,7 +1191,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e4\u05d8\u05e8\u05d9\u05d5\u05ea",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A4%D7%98%D7%A8%D7%99%D7%95%D7%AA",
         "index": 30,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 22",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 3.09",
@@ -1229,7 +1229,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e1\u05dc\u05e8\u05d9",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A1%D7%9C%D7%A8%D7%99%20-%20%D7%9B%D7%A8%D7%A4%D7%A1",
         "index": 31,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 16",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.69",
@@ -1269,7 +1269,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e7\u05d9\u05e9\u05d5\u05d0\u05d9\u05dd",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A7%D7%99%D7%A9%D7%95%D7%90%20%2528%D7%A7%D7%99%D7%A5%2529%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C",
         "index": 32,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 20",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.91",
@@ -1310,7 +1310,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05ea\u05d9\u05e8\u05e1",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%AA%D7%99%D7%A8%D7%A1%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C",
         "index": 33,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 108",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 3.32",
@@ -1350,7 +1350,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d7\u05e1\u05d4",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%97%D7%A1%D7%94%20%D7%A2%D7%A8%D7%91%D7%99%D7%AA",
         "index": 34,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 17",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.23",
@@ -1391,7 +1391,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05ea\u05e8\u05d3",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%AA%D7%A8%D7%93",
         "index": 35,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 23",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 2.86",
@@ -1432,7 +1432,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d0\u05e1\u05e4\u05e8\u05d2\u05d5\u05e1",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%90%D7%A1%D7%A4%D7%A8%D7%92%D7%95%D7%A1%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C",
         "index": 36,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 22",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 2.4",
@@ -1472,7 +1472,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05d3\u05dc\u05e2\u05ea",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%93%D7%9C%D7%A2%D7%AA%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C%D7%AA",
         "index": 37,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 20",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.72",
@@ -1513,7 +1513,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e1\u05dc\u05e7",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A1%D7%9C%D7%A7%20%D7%9E%D7%91%D7%95%D7%A9%D7%9C",
         "index": 38,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 44",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.68",
@@ -1554,7 +1554,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e7\u05d5\u05dc\u05d5\u05e8\u05d1\u05d9",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A7%D7%95%D7%9C%D7%95%D7%A8%D7%91%D7%99",
         "index": 39,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 27",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 1.7",
@@ -1595,7 +1595,7 @@
         "name": "\u05e2\u05e8\u05da \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05e9\u05dc \u05e6\u05e0\u05d5\u05df",
         "link": "http://www.foodsdictionary.co.il/Products/1/%D7%A6%D7%A0%D7%95%D7%9F%20-%20%D7%A6%D7%A0%D7%95%D7%A0%D7%99%D7%AA",
         "index": 40,
-        "Details": [
+        "details": [
             "\u05e1\u05d9\u05de\u05d5\u05df \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9 \u05dc-100 \u05d2\u05e8\u05dd",
             "\u05e7\u05dc\u05d5\u05e8\u05d9\u05d5\u05ea (\u05d0\u05e0\u05e8\u05d2\u05d9\u05d4) 16",
             "\u05d7\u05dc\u05d1\u05d5\u05e0\u05d9\u05dd (\u05d2\u05e8\u05dd) 0.68",
